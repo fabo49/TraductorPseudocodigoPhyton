@@ -66,7 +66,7 @@ def t_opbin(t):
 	return t
 
 def t_opuna(t):
-	r'\+\+|--|\+=|-=|\*=|/='
+	r'\+\+|--'
 	return t
 
 def t_ask(t):
@@ -80,7 +80,7 @@ def t_print(t):
 	return t
 
 def t_asig(t):
-	r'='
+	r'=|\+=|-=|\*=|/='
 	return t
 
 def t_num(t):
@@ -146,7 +146,7 @@ lex.lex()
 
 # parser
 
-# ---------------------- Producciones ya hechas ----------------------
+# --------------------------------- Producciones ya hechas ---------------------------------
 #	* empty
 #	* ids o numeros solos (inmediato)
 #	* parametro
@@ -160,11 +160,11 @@ lex.lex()
 #	* pedir cosas al usuario
 #	* instruccion: se refiere a una linea de programa y puede tener las siguientes formas
 #		- asignacion (tiene operaciones aritmeticas y booleanas)
+#		- operaciones unarias
 #		- procedimiento
-#		- condicional (if/else)
 #		- ciclo while
-#		- ciclo for
-# --------------------------------------------------------------------
+#		- condicionales
+# ------------------------------------------------------------------------------------------
 
 def p_tabs(p):
 	'''tabs : TAB '''
@@ -217,13 +217,14 @@ def p_parametros(p):
 	'''parametros : parametro | empty | operacion'''
 	p[0] = p[1]
 
-# reconoce comentarios
+# reconoce comentarios y comentarios identados
 def p_comentario(p):
-	'''comentario : tabs COMENT STRING | COMENT STRING '''
-	if p[3] is None:
-		p[0] = p[1] + ' ' + p[2]
-	else:
-		p[0] = tabs(m_tabs) + p[2] + ' ' + p[3]
+	'''comentario : COMENT STRING '''
+	p[0] = p[1] + ' ' + p[2]
+
+def p_comentariotab(p):
+	'''comentariotab : tabs comentario '''
+	p[0] = tabs(m_tabs) + p[2]
 
 # reconoce la instruccion para retornar de una funcion
 def p_return(p):
@@ -237,38 +238,50 @@ def p_procedimiento(p):
 
 # estructura de una asignacion a una variable
 def p_asignacion(p):
-	'''asignacion : '''
+	'''asignacion : VAR ID ASIG operacion'''
+	p[0] = p[2] + p[3] + p[4]
 
 # estructura de un condicional (if / else)
 def p_condicion(p):
-	'''condicion : IF operacion'''
+	'''condicion : condicionif | condicionelse'''
+	p[0] = p[1]
 
 def p_condicionif(p):
-	'''condicionif : '''
+	'''condicionif : IF operacion'''
+	p[0] = p[1] + p[2] + ':'
 
 def p_condicionelse(p):
-	'''condicionelse : '''
-
+	'''condicionelse : ELSE'''
+	p[0] = p[1] + ':'
 
 # estructura de un ciclo while
 def p_ciclowhile(p):
 	''' ciclowhile : WHILE PARENA operacion PARENC'''
-	p[0] = p[1] + p[2] + p[3] + p[4]
+	p[0] = p[1] + p[2] + p[3] + p[4] + ':'
 
 # estructura de un ciclo for
-def p_ciclofor
+def p_ciclofor(p):
 
+# estructura de una operacion unaria
+def p_operacionunaria(p):
+	'''opeunaria : OPUNA ID '''
+	p[0] = p[1] + p[2]
 
 # estructura general de una instruccion que puede ser:
 # 	- un procedimiento (metodo / funcion)
 # 	- una asignacion
+#	- operaciones unarias
 # 	- un condicional (if / else)
 #	- un ciclo while
 # 	- un ciclo for
+# ademas acepta instrucciones que estan identadas
 def p_instruccion(p):
-	''' instruccion : procedimiento | asignacion | condicion | ciclowhile | ciclofor'''
-	p[0] = p[1] + ':'
+	''' instruccion : procedimiento | asignacion | condicion | ciclowhile | ciclofor | opunaria'''
+	p[0] = p[1]
 
+def p_instrucciontab(p):
+	''' instrucciontab : tabs instruccion '''
+	p[0] = tabs(m_tabs) + p[2]
 
 import ply.yacc as yacc
 yacc.yacc()
