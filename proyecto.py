@@ -10,17 +10,28 @@
 
 # lexer
 
-tokens = ('COMA', 'PALRESERVADA', 'IF', 'WHILE', 'FOR', 'IN', 'PARENA', 'PARENC', 'OPBOOL', 'OPBIN', 'OPUNA', 'ASK', 'PRINT', 'ASIG', 'NUM', 'ID', 'PROC', 'EXPBOOL', 'COMENT', 'TAB', 'STRING', 'RETURN')
+tokens = ('COMA', 'VAR', 'FIN', 'IF', 'WHILE', 'FOR', 'ELSE', 'IN', 'PARENA', 'PARENC', 'OPBOOL', 'OPBIN', 'OPUNA', 'ASK', 'PRINT', 'ASIG', 'NUM', 'ID', 'PROC', 'EXPBOOL', 'COMENT', 'TAB', 'STRING', 'RETURN')
 
 m_tabs = 0 	# variable global que lleva cuantos tabs se hicieron en cada linea
+m_result = ""
 
 def t_coma(t):
 	r','
 	return t
 
-def t_palreservada(t):
-	r'var|fin'
-	t.value = ""
+def t_fin(t):
+	r'fin'
+	t.value = ''
+	return t
+
+def t_var(t):
+	r'var'
+	t.value = ''
+	return t
+
+def t_else(t):
+	r'si no
+	t.value = 'else'
 	return t
 
 def t_while(t):
@@ -163,8 +174,25 @@ lex.lex()
 #		- operaciones unarias
 #		- procedimiento
 #		- ciclo while
+#		- ciclo for
 #		- condicionales
 # ------------------------------------------------------------------------------------------
+def p_root(p):
+	'''root : inicio'''
+	p[0] = p[1]
+	global m_result
+	m_result = p[0]
+	file = open('output.py', 'w')
+	file.write(m_result)
+	file.close()
+
+def p_inicio(p):
+	'''inicio : instruccion inicio'''
+	p[0] = p[1] + p[2]
+
+def p_inicio2(p):
+	'''inicio : instruccion '''
+	p[0] = p[1]
 
 def p_tabs(p):
 	'''tabs : TAB '''
@@ -179,9 +207,13 @@ def p_empty(p):
 	'''empty:  '''
 	p[0] = ''
 
-# para reconocer tanto numeros solos como ids solos
+def p_fin(p):
+	'''fininstru : FIN'''
+	p[0] = p[1]
+
+# para reconocer tanto numeros solos, ids solos o expresiones booleanas (True/False) solas
 def p_inmediato(p):
-	'''inmediato : NUM | ID '''
+	'''inmediato : NUM | ID | EXPBOOL'''
 	p[0] = p[1]
 
 # reconoce la estructura de un "input" en el pseudocodigo
@@ -200,9 +232,12 @@ def p_operacion2(p):
 
 # reconoce cuando se solicita imprimir algo en consola
 def p_imprime(p):
-	'''imprime : tabs PRINT PARENA STRING PARENC | tabs PRINT PARENA operacion PARENC '''
-	p[0] = p[1] + p[2] + p[3] + p[4] + p[5]
+	'''imprime : PRINT PARENA STRING PARENC | PRINT PARENA operacion PARENC '''
+	p[0] = p[1] + p[2] + p[3] + p[4]
 
+def p_imprimetab(p):
+	'''imprimetab : tabs imprime '''
+	p[0] = p[1]
 # reconoce 2 o más parámetros
 def p_parametro(p):
 	'''parametro : operaciones COMA parametro '''
@@ -238,14 +273,10 @@ def p_procedimiento(p):
 
 # estructura de una asignacion a una variable
 def p_asignacion(p):
-	'''asignacion : VAR ID ASIG operacion'''
+	'''asignacion : VAR ID ASIG operacion | VAR ID ASIG STRING'''
 	p[0] = p[2] + p[3] + p[4]
 
 # estructura de un condicional (if / else)
-def p_condicion(p):
-	'''condicion : condicionif | condicionelse'''
-	p[0] = p[1]
-
 def p_condicionif(p):
 	'''condicionif : IF operacion'''
 	p[0] = p[1] + p[2] + ':'
@@ -254,13 +285,19 @@ def p_condicionelse(p):
 	'''condicionelse : ELSE'''
 	p[0] = p[1] + ':'
 
+def p_condicion(p):
+	'''condicion : condicionif | condicionelse'''
+	p[0] = p[1]
+
 # estructura de un ciclo while
 def p_ciclowhile(p):
-	''' ciclowhile : WHILE PARENA operacion PARENC'''
+	'''ciclowhile : WHILE PARENA operacion PARENC'''
 	p[0] = p[1] + p[2] + p[3] + p[4] + ':'
 
 # estructura de un ciclo for
 def p_ciclofor(p):
+	'''ciclofor : FOR ID IN ID'''
+	p[0] = p[1] + p[2] + p[3] + p[4] + ':'
 
 # estructura de una operacion unaria
 def p_operacionunaria(p):
@@ -276,7 +313,7 @@ def p_operacionunaria(p):
 # 	- un ciclo for
 # ademas acepta instrucciones que estan identadas
 def p_instruccion(p):
-	''' instruccion : procedimiento | asignacion | condicion | ciclowhile | ciclofor | opunaria'''
+	''' instruccion : procedimiento | asignacion | condicion | ciclowhile | ciclofor | opunaria | return'''
 	p[0] = p[1]
 
 def p_instrucciontab(p):
@@ -286,3 +323,8 @@ def p_instrucciontab(p):
 import ply.yacc as yacc
 yacc.yacc()
 # programa
+
+archivo = open('prueba.txt', 'r')
+
+for i in archivo:
+	yacc.parse(i)

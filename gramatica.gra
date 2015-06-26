@@ -1,0 +1,28 @@
+%token COMA FIN VAR IF WHILE FOR IN PARENA PARENC OPBOOL OPBIN OPUNA ASK
+%token PRINT ASIG NUM ID PROC EXPBOOL COMENT TAB STRING RETURN ELSE
+%%
+root : inicio;
+inicio : instruccion inicio | instruccion;
+tabs : TAB;
+empty : ;
+fininstru : FIN;
+inmediato : NUM | ID | EXPBOOL;
+preguntar : tabs ID ASIG ASK PARENA STRING PARENC;
+operacion : operacion OPBIN operacion | operacion OPBOOL operacion | PARENA operacion PARENC | inmediato;
+imprime : PRINT PARENA STRING PARENC | PRINT PARENA operacion PARENC;
+imprimetab : tabs imprime;
+parametro : operacion COMA parametro | operacion;
+parametros : parametro | empty | operacion;
+comentario : COMENT STRING;
+comentariotab : tabs comentario;
+return : RETURN operacion | RETURN inmediato;
+procedimiento : PROC ID PARENA parametros PARENC;
+asignacion : VAR ID ASIG operacion | VAR ID ASIG STRING;
+condicionif : IF operacion;
+condicionelse : ELSE;
+condicion : condicionif | condicionelse;
+ciclowhile : WHILE PARENA operacion PARENC;
+ciclofor : FOR ID IN ID;
+opeunaria : OPUNA ID;
+instruccion : procedimiento | asignacion | condicion | ciclowhile | ciclofor | opeunaria | return;
+instrucciontab : tabs instruccion;
