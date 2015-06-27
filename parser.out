@@ -1,0 +1,113 @@
+Created by PLY version 3.6 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    OPBOOL
+
+Grammar
+
+Rule 0     S' -> root
+Rule 1     root -> inicio
+Rule 2     inicio -> instruccion inicio
+Rule 3     inicio -> instruccion
+Rule 4     tabs -> TAB
+Rule 5     empty -> <empty>
+Rule 6     fininstru -> FIN
+Rule 7     inmediato -> NUM
+Rule 8     inmediato -> ID
+Rule 9     inmediato -> EXPBOOL
+Rule 10    preguntar -> tabs ID ASIG ASK PARENA STRING PARENC
+Rule 11    operacion -> PARENA operacion PARENC operacion2
+Rule 12    operacion -> inmediato operacion2
+Rule 13    operacion2 -> OPBIN operacion operacion3
+Rule 14    operacion3 -> operacion2
+Rule 15    operacion3 -> empty
+Rule 16    opestring -> STRING
+Rule 17    opestring -> operacion
+Rule 18    imprime -> PRINT PARENA opestring PARENC
+Rule 19    imprimetab -> tabs imprime
+Rule 20    parametro -> operaciones COMA parametro
+Rule 21    parametro -> operacion
+Rule 22    parametros -> parametro
+Rule 23    parametros -> empty
+Rule 24    comentario -> COMENT STRING
+Rule 25    comentariotab -> tabs comentario
+Rule 26    return -> RETURN opestring
+Rule 27    procedimiento -> PROC ID PARENA parametros PARENC
+Rule 28    asignacion -> VAR ID ASIG opestring
+Rule 29    condicionif -> IF operacion
+Rule 30    condicionelse -> ELSE
+Rule 31    condicion -> condicionif
+Rule 32    condicion -> condicionelse
+Rule 33    ciclowhile -> WHILE PARENA operacion PARENC
+Rule 34    ciclofor -> FOR ID IN ID
+Rule 35    opeunaria -> OPUNA ID
+Rule 36    instruccion -> procedimiento
+Rule 37    instruccion -> asignacion
+Rule 38    instruccion -> condicion
+Rule 39    instruccion -> ciclowhile
+Rule 40    instruccion -> ciclofor
+Rule 41    instruccion -> opeunaria
+Rule 42    instruccion -> return
+Rule 43    instrucciontab -> tabs instruccion
+
+Terminals, with rules where they appear
+
+ASIG                 : 10 28
+ASK                  : 10
+COMA                 : 20
+COMENT               : 24
+ELSE                 : 30
+EXPBOOL              : 9
+FIN                  : 6
+FOR                  : 34
+ID                   : 8 10 27 28 34 34 35
+IF                   : 29
+IN                   : 34
+NUM                  : 7
+OPBIN                : 13
+OPBOOL               : 
+OPUNA                : 35
+PARENA               : 10 11 18 27 33
+PARENC               : 10 11 18 27 33
+PRINT                : 18
+PROC                 : 27
+RETURN               : 26
+STRING               : 10 16 24
+TAB                  : 4
+VAR                  : 28
+WHILE                : 33
+error                : 
+
+Nonterminals, with rules where they appear
+
+asignacion           : 37
+ciclofor             : 40
+ciclowhile           : 39
+comentario           : 25
+comentariotab        : 
+condicion            : 38
+condicionelse        : 32
+condicionif          : 31
+empty                : 15 23
+fininstru            : 
+imprime              : 19
+imprimetab           : 
+inicio               : 1 2
+inmediato            : 12
+instruccion          : 2 3 43
+instrucciontab       : 
+operacion            : 11 13 17 21 29 33
+operacion2           : 11 12 14
+operacion3           : 13
+operaciones          : 20
+opestring            : 18 26 28
+opeunaria            : 41
+parametro            : 20 22
+parametros           : 27
+preguntar            : 
+procedimiento        : 36
+return               : 42
+root                 : 0
+tabs                 : 10 19 25 43
+

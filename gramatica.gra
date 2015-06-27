@@ -1,28 +1,34 @@
-%token COMA FIN VAR IF WHILE FOR IN PARENA PARENC OPBOOL OPBIN OPUNA ASK
+%token COMA FIN VAR IF WHILE FOR IN PARENA PARENC OPBIN OPUNA ASK
 %token PRINT ASIG NUM ID PROC EXPBOOL COMENT TAB STRING RETURN ELSE
 %%
 root : inicio;
-inicio : instruccion inicio | instruccion;
+inicio : instruccion inicio;
+inicio : instruccion;
 tabs : TAB;
 empty : ;
 fininstru : FIN;
 inmediato : NUM | ID | EXPBOOL;
 preguntar : tabs ID ASIG ASK PARENA STRING PARENC;
-operacion : operacion OPBIN operacion | operacion OPBOOL operacion | PARENA operacion PARENC | inmediato;
-imprime : PRINT PARENA STRING PARENC | PRINT PARENA operacion PARENC;
-imprimetab : tabs imprime;
-parametro : operacion COMA parametro | operacion;
-parametros : parametro | empty | operacion;
+operacion : inmediato operacion2 | PARENA operacion PARENC operacion2;
+operacion2 : OPBIN operacion operacion3;
+operacion3 : operacion2 | empty;
+opestring : STRING | operacion;
+imprime : PRINT PARENA opestring PARENC;
+imrpimetab : tabs imprime;
+parametro : operacion COMA parametro;
+parametro : operacion;
+parametros : parametro | empty ;
 comentario : COMENT STRING;
 comentariotab : tabs comentario;
-return : RETURN operacion | RETURN inmediato;
+return : RETURN opestring;
 procedimiento : PROC ID PARENA parametros PARENC;
-asignacion : VAR ID ASIG operacion | VAR ID ASIG STRING;
+asignacion : VAR ID ASIG opestring;
 condicionif : IF operacion;
 condicionelse : ELSE;
 condicion : condicionif | condicionelse;
 ciclowhile : WHILE PARENA operacion PARENC;
 ciclofor : FOR ID IN ID;
 opeunaria : OPUNA ID;
-instruccion : procedimiento | asignacion | condicion | ciclowhile | ciclofor | opeunaria | return;
+instruccion : procedimiento | asignacion | condicion
+				| ciclowhile | ciclofor | opeunaria | return;
 instrucciontab : tabs instruccion;

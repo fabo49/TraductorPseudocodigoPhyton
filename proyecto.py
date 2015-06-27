@@ -14,6 +14,8 @@ tokens = ('COMA', 'VAR', 'FIN', 'IF', 'WHILE', 'FOR', 'ELSE', 'IN', 'PARENA', 'P
 
 m_tabs = 0 	# variable global que lleva cuantos tabs se hicieron en cada linea
 m_result = ""
+m_totLineas = 1
+m_reporte = ""
 
 def t_coma(t):
 	r','
@@ -30,7 +32,7 @@ def t_var(t):
 	return t
 
 def t_else(t):
-	r'si no
+	r'si no'
 	t.value = 'else'
 	return t
 
@@ -62,18 +64,14 @@ def t_parenc(t):
 	r'\)'
 	return t
 
-def t_opbool(t):
-	r'==|!=|>=|<=|>|<|y|o'
-	if t.value == 'y':
-		t.value = 'and'
-	elif t.value == 'o': t.value = 'or'
-
-	return t
-
 def t_opbin(t):
-	r'\+|-|\*|/|mod'
-	if t.value == 'mod'
+	r'\+|-|\*|/|mod|==|!=|>=|<=|>|<|y|o'
+	if t.value == 'mod':
 		t.value = '%'
+	elif t.value == 'y':
+		t.value = 'and'
+	elif t.value == 'o':
+		t.value = 'or'
 	return t
 
 def t_opuna(t):
@@ -110,11 +108,12 @@ def t_proc(t):
 
 def t_expbool(t):
 	r'verdadero|falso'
-	if t.value == 'verdadero'
+	if t.value == 'verdadero':
 		t.value = 'True'
-	else
+	else:
 		t.value = "False"
-	 return t
+
+	return t
 
 def t_return(t):
 	r'retornar'
@@ -133,7 +132,9 @@ def t_tab(t):
 # Hace el cambio de linea
 def t_newline(t):
     r'\n'
-    t.lexer.lineno += t.value.count("\n")
+
+	global m_totLineas
+	m_totLineas += 1
 
 def t_string(t):	# funciona tanto para comentarios como para strings
 	r'[^\n\r]'
@@ -148,7 +149,6 @@ def add_tabs(cantTabs):
 	nivel = ""
 	for i in cantTabs:	# hace tantos tabs como lo dice el parametro que recibe
 		nivel += '\t'
-
 	nivel = '\n'+nivel	# agrega el cambio de linea
 	return nivel
 
@@ -204,16 +204,18 @@ def p_tabs(p):
 
 # reconoce epsilon
 def p_empty(p):
-	'''empty:  '''
+	'''empty : '''
 	p[0] = ''
 
 def p_fin(p):
 	'''fininstru : FIN'''
 	p[0] = p[1]
 
-# para reconocer tanto numeros solos, ids solos o expresiones booleanas (True/False) solas
+# para reconocer tanto numeros solos, ids solos, expresiones booleanas (True/False) solas o strings
 def p_inmediato(p):
-	'''inmediato : NUM | ID | EXPBOOL'''
+	'''inmediato : NUM
+				 | ID
+				 | EXPBOOL'''
 	p[0] = p[1]
 
 # reconoce la estructura de un "input" en el pseudocodigo
@@ -223,22 +225,37 @@ def p_preguntar(p):
 
 # reconoce tanto operaciones aritmeticas como logicas en el pseudocodigo
 def p_operacion(p):
-	'''operacion : operacion OPBIN operacion | operacion OPBOOL operacion | PARENA operacion PARENC'''
+	'''operacion : PARENA operacion PARENC operacion2'''
+	p[0] = p[1] + p[2] + p[3] + p[4]
+
+def p_operacion1(p):
+	'''operacion : inmediato operacion2'''
+	p[0] = p[1]
+def p_operacion2(p):
+	'''operacion2 : OPBIN operacion operacion3'''
 	p[0] = p[1] + p[2] + p[3]
 
-def p_operacion2(p):
-	'''operacion : inmediato'''
+def p_operacion3(p):
+	'''operacion3 : operacion2
+				  | empty'''
+	p[0] = p[1]
+
+# metodo auxiliar para poder factorizar mas facil
+def p_opestring(p):
+	'''opestring : STRING
+				 | operacion '''
 	p[0] = p[1]
 
 # reconoce cuando se solicita imprimir algo en consola
 def p_imprime(p):
-	'''imprime : PRINT PARENA STRING PARENC | PRINT PARENA operacion PARENC '''
+	'''imprime : PRINT PARENA opestring PARENC '''
 	p[0] = p[1] + p[2] + p[3] + p[4]
 
 def p_imprimetab(p):
 	'''imprimetab : tabs imprime '''
 	p[0] = p[1]
-# reconoce 2 o más parámetros
+
+# reconoce 2 o mas parametros
 def p_parametro(p):
 	'''parametro : operaciones COMA parametro '''
 	p[0] = p[1] + p[2] + ' ' + p[3]
@@ -249,7 +266,8 @@ def p_parametro2(p):
 
 # reconoce 0 parametros, 1 parametro o n parametros
 def p_parametros(p):
-	'''parametros : parametro | empty | operacion'''
+	'''parametros : parametro
+				  | empty'''
 	p[0] = p[1]
 
 # reconoce comentarios y comentarios identados
@@ -259,11 +277,12 @@ def p_comentario(p):
 
 def p_comentariotab(p):
 	'''comentariotab : tabs comentario '''
-	p[0] = tabs(m_tabs) + p[2]
+	p[0] = p[0] + p[2]
 
 # reconoce la instruccion para retornar de una funcion
+# puede retornar operaciones o strings
 def p_return(p):
-	'''return : RETURN operacion | RETURN inmediato '''
+	'''return : RETURN opestring'''
 	p[0] = p[1] + p[2]
 
 # estructura general de un procedimiento
@@ -273,7 +292,7 @@ def p_procedimiento(p):
 
 # estructura de una asignacion a una variable
 def p_asignacion(p):
-	'''asignacion : VAR ID ASIG operacion | VAR ID ASIG STRING'''
+	'''asignacion : VAR ID ASIG opestring'''
 	p[0] = p[2] + p[3] + p[4]
 
 # estructura de un condicional (if / else)
@@ -286,7 +305,8 @@ def p_condicionelse(p):
 	p[0] = p[1] + ':'
 
 def p_condicion(p):
-	'''condicion : condicionif | condicionelse'''
+	'''condicion : condicionif
+				 | condicionelse'''
 	p[0] = p[1]
 
 # estructura de un ciclo while
@@ -313,18 +333,33 @@ def p_operacionunaria(p):
 # 	- un ciclo for
 # ademas acepta instrucciones que estan identadas
 def p_instruccion(p):
-	''' instruccion : procedimiento | asignacion | condicion | ciclowhile | ciclofor | opunaria | return'''
+	''' instruccion : procedimiento
+					| asignacion
+					| condicion
+					| ciclowhile
+					| ciclofor
+					| opeunaria
+					| return'''
 	p[0] = p[1]
 
 def p_instrucciontab(p):
 	''' instrucciontab : tabs instruccion '''
-	p[0] = tabs(m_tabs) + p[2]
+	p[0] = p[0] + p[2]
+
+def p_error(p):
+	global m_totLineas
+	global m_reporte
+	if p:
+		m_reporte +="Error de sintaxis en " + str(p.value) +". En la linea "+str(m_totLineas)
+		print(m_reporte)
+	else:
+		m_reporte += "Error en "+str(m_totLineas)
+		print(m_reporte)
 
 import ply.yacc as yacc
 yacc.yacc()
 # programa
 
-archivo = open('prueba.txt', 'r')
-
+sourceFile = open('prueba.txt', 'r')
 for i in archivo:
 	yacc.parse(i)
