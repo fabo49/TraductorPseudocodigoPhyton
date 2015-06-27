@@ -1,9 +1,5 @@
 Created by PLY version 3.6 (http://www.dabeaz.com/ply)
 
-Unused terminals:
-
-    OPBOOL
-
 Grammar
 
 Rule 0     S' -> root
@@ -26,7 +22,7 @@ Rule 16    opestring -> STRING
 Rule 17    opestring -> operacion
 Rule 18    imprime -> PRINT PARENA opestring PARENC
 Rule 19    imprimetab -> tabs imprime
-Rule 20    parametro -> operaciones COMA parametro
+Rule 20    parametro -> operacion COMA parametro
 Rule 21    parametro -> operacion
 Rule 22    parametros -> parametro
 Rule 23    parametros -> empty
@@ -66,7 +62,6 @@ IF                   : 29
 IN                   : 34
 NUM                  : 7
 OPBIN                : 13
-OPBOOL               : 
 OPUNA                : 35
 PARENA               : 10 11 18 27 33
 PARENC               : 10 11 18 27 33
@@ -97,10 +92,9 @@ inicio               : 1 2
 inmediato            : 12
 instruccion          : 2 3 43
 instrucciontab       : 
-operacion            : 11 13 17 21 29 33
+operacion            : 11 13 17 20 21 29 33
 operacion2           : 11 12 14
 operacion3           : 13
-operaciones          : 20
 opestring            : 18 26 28
 opeunaria            : 41
 parametro            : 20 22

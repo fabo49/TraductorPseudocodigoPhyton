@@ -10,7 +10,7 @@
 
 # lexer
 
-tokens = ('COMA', 'VAR', 'FIN', 'IF', 'WHILE', 'FOR', 'ELSE', 'IN', 'PARENA', 'PARENC', 'OPBOOL', 'OPBIN', 'OPUNA', 'ASK', 'PRINT', 'ASIG', 'NUM', 'ID', 'PROC', 'EXPBOOL', 'COMENT', 'TAB', 'STRING', 'RETURN')
+tokens = ('COMA', 'VAR', 'FIN', 'IF', 'WHILE', 'FOR', 'ELSE', 'IN', 'PARENA', 'PARENC', 'OPBIN', 'OPUNA', 'ASK', 'PRINT', 'ASIG', 'NUM', 'ID', 'PROC', 'EXPBOOL', 'COMENT', 'TAB', 'STRING', 'RETURN')
 
 m_tabs = 0 	# variable global que lleva cuantos tabs se hicieron en cada linea
 m_result = ""
@@ -131,8 +131,7 @@ def t_tab(t):
 
 # Hace el cambio de linea
 def t_newline(t):
-    r'\n'
-
+	r'\n'
 	global m_totLineas
 	m_totLineas += 1
 
@@ -257,7 +256,7 @@ def p_imprimetab(p):
 
 # reconoce 2 o mas parametros
 def p_parametro(p):
-	'''parametro : operaciones COMA parametro '''
+	'''parametro : operacion COMA parametro '''
 	p[0] = p[1] + p[2] + ' ' + p[3]
 
 def p_parametro2(p):
