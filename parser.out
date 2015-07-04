@@ -5,103 +5,1319 @@ Grammar
 Rule 0     S' -> root
 Rule 1     root -> inicio
 Rule 2     inicio -> instruccion inicio
-Rule 3     inicio -> instruccion
-Rule 4     tabs -> TAB
-Rule 5     empty -> <empty>
-Rule 6     fininstru -> FIN
-Rule 7     inmediato -> NUM
-Rule 8     inmediato -> ID
-Rule 9     inmediato -> EXPBOOL
-Rule 10    preguntar -> tabs ID ASIG ASK PARENA STRING PARENC
-Rule 11    operacion -> PARENA operacion PARENC operacion2
-Rule 12    operacion -> inmediato operacion2
-Rule 13    operacion2 -> OPBIN operacion operacion3
-Rule 14    operacion3 -> operacion2
-Rule 15    operacion3 -> empty
-Rule 16    opestring -> STRING
-Rule 17    opestring -> operacion
-Rule 18    imprime -> PRINT PARENA opestring PARENC
-Rule 19    imprimetab -> tabs imprime
-Rule 20    parametro -> operacion COMA parametro
-Rule 21    parametro -> operacion
-Rule 22    parametros -> parametro
-Rule 23    parametros -> empty
-Rule 24    comentario -> COMENT STRING
-Rule 25    comentariotab -> tabs comentario
-Rule 26    return -> RETURN opestring
-Rule 27    procedimiento -> PROC ID PARENA parametros PARENC
-Rule 28    asignacion -> VAR ID ASIG opestring
-Rule 29    condicionif -> IF operacion
-Rule 30    condicionelse -> ELSE
-Rule 31    condicion -> condicionif
-Rule 32    condicion -> condicionelse
-Rule 33    ciclowhile -> WHILE PARENA operacion PARENC
-Rule 34    ciclofor -> FOR ID IN ID
-Rule 35    opeunaria -> OPUNA ID
-Rule 36    instruccion -> procedimiento
-Rule 37    instruccion -> asignacion
-Rule 38    instruccion -> condicion
-Rule 39    instruccion -> ciclowhile
-Rule 40    instruccion -> ciclofor
-Rule 41    instruccion -> opeunaria
-Rule 42    instruccion -> return
-Rule 43    instrucciontab -> tabs instruccion
+Rule 3     inicio -> instruccion fininstru
+Rule 4     empty -> <empty>
+Rule 5     fininstru -> FIN
+Rule 6     inmediato -> NUM
+Rule 7     inmediato -> ID
+Rule 8     inmediato -> EXPBOOL
+Rule 9     operacion -> operacion1
+Rule 10    operacion1 -> operacion OPBIN operacion
+Rule 11    operacion1 -> PARENA operacion PARENC
+Rule 12    operacion1 -> inmediato
+Rule 13    opestring -> STRING
+Rule 14    opestring -> operacion
+Rule 15    parametro -> operacion COMA parametro
+Rule 16    parametro -> operacion
+Rule 17    parametros -> parametro
+Rule 18    parametros -> empty
+Rule 19    imprime -> PRINT PARENA opestring PARENC
+Rule 20    comentario -> COMENT STRING
+Rule 21    return -> RETURN opestring
+Rule 22    procedimiento -> PROC ID PARENA parametros PARENC
+Rule 23    asignacion -> VAR ID ASIG opestring
+Rule 24    asignacion -> ID ASIG opestring
+Rule 25    condicionif -> IF operacion
+Rule 26    condicionelse -> ELSE
+Rule 27    condicion -> condicionif
+Rule 28    condicion -> condicionelse
+Rule 29    ciclowhile -> WHILE PARENA operacion PARENC
+Rule 30    ciclofor -> FOR ID IN ID
+Rule 31    opeunaria -> OPUNA ID
+Rule 32    preguntar -> ASIG ASK PARENA STRING PARENC
+Rule 33    instruccion -> procedimiento
+Rule 34    instruccion -> asignacion
+Rule 35    instruccion -> condicion
+Rule 36    instruccion -> ciclowhile
+Rule 37    instruccion -> ciclofor
+Rule 38    instruccion -> opeunaria
+Rule 39    instruccion -> return
+Rule 40    instruccion -> comentario
+Rule 41    instruccion -> imprime
+Rule 42    instruccion -> preguntar
 
 Terminals, with rules where they appear
 
-ASIG                 : 10 28
-ASK                  : 10
-COMA                 : 20
-COMENT               : 24
-ELSE                 : 30
-EXPBOOL              : 9
-FIN                  : 6
-FOR                  : 34
-ID                   : 8 10 27 28 34 34 35
-IF                   : 29
-IN                   : 34
-NUM                  : 7
-OPBIN                : 13
-OPUNA                : 35
-PARENA               : 10 11 18 27 33
-PARENC               : 10 11 18 27 33
-PRINT                : 18
-PROC                 : 27
-RETURN               : 26
-STRING               : 10 16 24
-TAB                  : 4
-VAR                  : 28
-WHILE                : 33
+ASIG                 : 23 24 32
+ASK                  : 32
+COMA                 : 15
+COMENT               : 20
+ELSE                 : 26
+EXPBOOL              : 8
+FIN                  : 5
+FOR                  : 30
+ID                   : 7 22 23 24 30 30 31
+IF                   : 25
+IN                   : 30
+NUM                  : 6
+OPBIN                : 10
+OPUNA                : 31
+PARENA               : 11 19 22 29 32
+PARENC               : 11 19 22 29 32
+PRINT                : 19
+PROC                 : 22
+RETURN               : 21
+STRING               : 13 20 32
+VAR                  : 23
+WHILE                : 29
 error                : 
 
 Nonterminals, with rules where they appear
 
-asignacion           : 37
-ciclofor             : 40
-ciclowhile           : 39
-comentario           : 25
-comentariotab        : 
-condicion            : 38
-condicionelse        : 32
-condicionif          : 31
-empty                : 15 23
-fininstru            : 
-imprime              : 19
-imprimetab           : 
+asignacion           : 34
+ciclofor             : 37
+ciclowhile           : 36
+comentario           : 40
+condicion            : 35
+condicionelse        : 28
+condicionif          : 27
+empty                : 18
+fininstru            : 3
+imprime              : 41
 inicio               : 1 2
 inmediato            : 12
-instruccion          : 2 3 43
-instrucciontab       : 
-operacion            : 11 13 17 20 21 29 33
-operacion2           : 11 12 14
-operacion3           : 13
-opestring            : 18 26 28
-opeunaria            : 41
-parametro            : 20 22
-parametros           : 27
-preguntar            : 
-procedimiento        : 36
-return               : 42
+instruccion          : 2 3
+operacion            : 10 10 11 14 15 16 25 29
+operacion1           : 9
+opestring            : 19 21 23 24
+opeunaria            : 38
+parametro            : 15 17
+parametros           : 22
+preguntar            : 42
+procedimiento        : 33
+return               : 39
 root                 : 0
-tabs                 : 10 19 25 43
 
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . root
+    (1) root -> . inicio
+    (2) inicio -> . instruccion inicio
+    (3) inicio -> . instruccion fininstru
+    (33) instruccion -> . procedimiento
+    (34) instruccion -> . asignacion
+    (35) instruccion -> . condicion
+    (36) instruccion -> . ciclowhile
+    (37) instruccion -> . ciclofor
+    (38) instruccion -> . opeunaria
+    (39) instruccion -> . return
+    (40) instruccion -> . comentario
+    (41) instruccion -> . imprime
+    (42) instruccion -> . preguntar
+    (22) procedimiento -> . PROC ID PARENA parametros PARENC
+    (23) asignacion -> . VAR ID ASIG opestring
+    (24) asignacion -> . ID ASIG opestring
+    (27) condicion -> . condicionif
+    (28) condicion -> . condicionelse
+    (29) ciclowhile -> . WHILE PARENA operacion PARENC
+    (30) ciclofor -> . FOR ID IN ID
+    (31) opeunaria -> . OPUNA ID
+    (21) return -> . RETURN opestring
+    (20) comentario -> . COMENT STRING
+    (19) imprime -> . PRINT PARENA opestring PARENC
+    (32) preguntar -> . ASIG ASK PARENA STRING PARENC
+    (25) condicionif -> . IF operacion
+    (26) condicionelse -> . ELSE
+
+    PROC            shift and go to state 27
+    VAR             shift and go to state 18
+    ID              shift and go to state 19
+    WHILE           shift and go to state 3
+    FOR             shift and go to state 15
+    OPUNA           shift and go to state 11
+    RETURN          shift and go to state 22
+    COMENT          shift and go to state 1
+    PRINT           shift and go to state 6
+    ASIG            shift and go to state 8
+    IF              shift and go to state 20
+    ELSE            shift and go to state 17
+
+    opeunaria                      shift and go to state 21
+    return                         shift and go to state 14
+    asignacion                     shift and go to state 23
+    preguntar                      shift and go to state 9
+    instruccion                    shift and go to state 25
+    ciclofor                       shift and go to state 16
+    comentario                     shift and go to state 7
+    condicion                      shift and go to state 12
+    condicionelse                  shift and go to state 4
+    inicio                         shift and go to state 13
+    condicionif                    shift and go to state 26
+    imprime                        shift and go to state 2
+    root                           shift and go to state 24
+    ciclowhile                     shift and go to state 10
+    procedimiento                  shift and go to state 5
+
+state 1
+
+    (20) comentario -> COMENT . STRING
+
+    STRING          shift and go to state 28
+
+
+state 2
+
+    (41) instruccion -> imprime .
+
+    FIN             reduce using rule 41 (instruccion -> imprime .)
+    PROC            reduce using rule 41 (instruccion -> imprime .)
+    VAR             reduce using rule 41 (instruccion -> imprime .)
+    ID              reduce using rule 41 (instruccion -> imprime .)
+    WHILE           reduce using rule 41 (instruccion -> imprime .)
+    FOR             reduce using rule 41 (instruccion -> imprime .)
+    OPUNA           reduce using rule 41 (instruccion -> imprime .)
+    RETURN          reduce using rule 41 (instruccion -> imprime .)
+    COMENT          reduce using rule 41 (instruccion -> imprime .)
+    PRINT           reduce using rule 41 (instruccion -> imprime .)
+    ASIG            reduce using rule 41 (instruccion -> imprime .)
+    IF              reduce using rule 41 (instruccion -> imprime .)
+    ELSE            reduce using rule 41 (instruccion -> imprime .)
+
+
+state 3
+
+    (29) ciclowhile -> WHILE . PARENA operacion PARENC
+
+    PARENA          shift and go to state 29
+
+
+state 4
+
+    (28) condicion -> condicionelse .
+
+    FIN             reduce using rule 28 (condicion -> condicionelse .)
+    PROC            reduce using rule 28 (condicion -> condicionelse .)
+    VAR             reduce using rule 28 (condicion -> condicionelse .)
+    ID              reduce using rule 28 (condicion -> condicionelse .)
+    WHILE           reduce using rule 28 (condicion -> condicionelse .)
+    FOR             reduce using rule 28 (condicion -> condicionelse .)
+    OPUNA           reduce using rule 28 (condicion -> condicionelse .)
+    RETURN          reduce using rule 28 (condicion -> condicionelse .)
+    COMENT          reduce using rule 28 (condicion -> condicionelse .)
+    PRINT           reduce using rule 28 (condicion -> condicionelse .)
+    ASIG            reduce using rule 28 (condicion -> condicionelse .)
+    IF              reduce using rule 28 (condicion -> condicionelse .)
+    ELSE            reduce using rule 28 (condicion -> condicionelse .)
+
+
+state 5
+
+    (33) instruccion -> procedimiento .
+
+    FIN             reduce using rule 33 (instruccion -> procedimiento .)
+    PROC            reduce using rule 33 (instruccion -> procedimiento .)
+    VAR             reduce using rule 33 (instruccion -> procedimiento .)
+    ID              reduce using rule 33 (instruccion -> procedimiento .)
+    WHILE           reduce using rule 33 (instruccion -> procedimiento .)
+    FOR             reduce using rule 33 (instruccion -> procedimiento .)
+    OPUNA           reduce using rule 33 (instruccion -> procedimiento .)
+    RETURN          reduce using rule 33 (instruccion -> procedimiento .)
+    COMENT          reduce using rule 33 (instruccion -> procedimiento .)
+    PRINT           reduce using rule 33 (instruccion -> procedimiento .)
+    ASIG            reduce using rule 33 (instruccion -> procedimiento .)
+    IF              reduce using rule 33 (instruccion -> procedimiento .)
+    ELSE            reduce using rule 33 (instruccion -> procedimiento .)
+
+
+state 6
+
+    (19) imprime -> PRINT . PARENA opestring PARENC
+
+    PARENA          shift and go to state 30
+
+
+state 7
+
+    (40) instruccion -> comentario .
+
+    FIN             reduce using rule 40 (instruccion -> comentario .)
+    PROC            reduce using rule 40 (instruccion -> comentario .)
+    VAR             reduce using rule 40 (instruccion -> comentario .)
+    ID              reduce using rule 40 (instruccion -> comentario .)
+    WHILE           reduce using rule 40 (instruccion -> comentario .)
+    FOR             reduce using rule 40 (instruccion -> comentario .)
+    OPUNA           reduce using rule 40 (instruccion -> comentario .)
+    RETURN          reduce using rule 40 (instruccion -> comentario .)
+    COMENT          reduce using rule 40 (instruccion -> comentario .)
+    PRINT           reduce using rule 40 (instruccion -> comentario .)
+    ASIG            reduce using rule 40 (instruccion -> comentario .)
+    IF              reduce using rule 40 (instruccion -> comentario .)
+    ELSE            reduce using rule 40 (instruccion -> comentario .)
+
+
+state 8
+
+    (32) preguntar -> ASIG . ASK PARENA STRING PARENC
+
+    ASK             shift and go to state 31
+
+
+state 9
+
+    (42) instruccion -> preguntar .
+
+    FIN             reduce using rule 42 (instruccion -> preguntar .)
+    PROC            reduce using rule 42 (instruccion -> preguntar .)
+    VAR             reduce using rule 42 (instruccion -> preguntar .)
+    ID              reduce using rule 42 (instruccion -> preguntar .)
+    WHILE           reduce using rule 42 (instruccion -> preguntar .)
+    FOR             reduce using rule 42 (instruccion -> preguntar .)
+    OPUNA           reduce using rule 42 (instruccion -> preguntar .)
+    RETURN          reduce using rule 42 (instruccion -> preguntar .)
+    COMENT          reduce using rule 42 (instruccion -> preguntar .)
+    PRINT           reduce using rule 42 (instruccion -> preguntar .)
+    ASIG            reduce using rule 42 (instruccion -> preguntar .)
+    IF              reduce using rule 42 (instruccion -> preguntar .)
+    ELSE            reduce using rule 42 (instruccion -> preguntar .)
+
+
+state 10
+
+    (36) instruccion -> ciclowhile .
+
+    FIN             reduce using rule 36 (instruccion -> ciclowhile .)
+    PROC            reduce using rule 36 (instruccion -> ciclowhile .)
+    VAR             reduce using rule 36 (instruccion -> ciclowhile .)
+    ID              reduce using rule 36 (instruccion -> ciclowhile .)
+    WHILE           reduce using rule 36 (instruccion -> ciclowhile .)
+    FOR             reduce using rule 36 (instruccion -> ciclowhile .)
+    OPUNA           reduce using rule 36 (instruccion -> ciclowhile .)
+    RETURN          reduce using rule 36 (instruccion -> ciclowhile .)
+    COMENT          reduce using rule 36 (instruccion -> ciclowhile .)
+    PRINT           reduce using rule 36 (instruccion -> ciclowhile .)
+    ASIG            reduce using rule 36 (instruccion -> ciclowhile .)
+    IF              reduce using rule 36 (instruccion -> ciclowhile .)
+    ELSE            reduce using rule 36 (instruccion -> ciclowhile .)
+
+
+state 11
+
+    (31) opeunaria -> OPUNA . ID
+
+    ID              shift and go to state 32
+
+
+state 12
+
+    (35) instruccion -> condicion .
+
+    FIN             reduce using rule 35 (instruccion -> condicion .)
+    PROC            reduce using rule 35 (instruccion -> condicion .)
+    VAR             reduce using rule 35 (instruccion -> condicion .)
+    ID              reduce using rule 35 (instruccion -> condicion .)
+    WHILE           reduce using rule 35 (instruccion -> condicion .)
+    FOR             reduce using rule 35 (instruccion -> condicion .)
+    OPUNA           reduce using rule 35 (instruccion -> condicion .)
+    RETURN          reduce using rule 35 (instruccion -> condicion .)
+    COMENT          reduce using rule 35 (instruccion -> condicion .)
+    PRINT           reduce using rule 35 (instruccion -> condicion .)
+    ASIG            reduce using rule 35 (instruccion -> condicion .)
+    IF              reduce using rule 35 (instruccion -> condicion .)
+    ELSE            reduce using rule 35 (instruccion -> condicion .)
+
+
+state 13
+
+    (1) root -> inicio .
+
+    $end            reduce using rule 1 (root -> inicio .)
+
+
+state 14
+
+    (39) instruccion -> return .
+
+    FIN             reduce using rule 39 (instruccion -> return .)
+    PROC            reduce using rule 39 (instruccion -> return .)
+    VAR             reduce using rule 39 (instruccion -> return .)
+    ID              reduce using rule 39 (instruccion -> return .)
+    WHILE           reduce using rule 39 (instruccion -> return .)
+    FOR             reduce using rule 39 (instruccion -> return .)
+    OPUNA           reduce using rule 39 (instruccion -> return .)
+    RETURN          reduce using rule 39 (instruccion -> return .)
+    COMENT          reduce using rule 39 (instruccion -> return .)
+    PRINT           reduce using rule 39 (instruccion -> return .)
+    ASIG            reduce using rule 39 (instruccion -> return .)
+    IF              reduce using rule 39 (instruccion -> return .)
+    ELSE            reduce using rule 39 (instruccion -> return .)
+
+
+state 15
+
+    (30) ciclofor -> FOR . ID IN ID
+
+    ID              shift and go to state 33
+
+
+state 16
+
+    (37) instruccion -> ciclofor .
+
+    FIN             reduce using rule 37 (instruccion -> ciclofor .)
+    PROC            reduce using rule 37 (instruccion -> ciclofor .)
+    VAR             reduce using rule 37 (instruccion -> ciclofor .)
+    ID              reduce using rule 37 (instruccion -> ciclofor .)
+    WHILE           reduce using rule 37 (instruccion -> ciclofor .)
+    FOR             reduce using rule 37 (instruccion -> ciclofor .)
+    OPUNA           reduce using rule 37 (instruccion -> ciclofor .)
+    RETURN          reduce using rule 37 (instruccion -> ciclofor .)
+    COMENT          reduce using rule 37 (instruccion -> ciclofor .)
+    PRINT           reduce using rule 37 (instruccion -> ciclofor .)
+    ASIG            reduce using rule 37 (instruccion -> ciclofor .)
+    IF              reduce using rule 37 (instruccion -> ciclofor .)
+    ELSE            reduce using rule 37 (instruccion -> ciclofor .)
+
+
+state 17
+
+    (26) condicionelse -> ELSE .
+
+    FIN             reduce using rule 26 (condicionelse -> ELSE .)
+    PROC            reduce using rule 26 (condicionelse -> ELSE .)
+    VAR             reduce using rule 26 (condicionelse -> ELSE .)
+    ID              reduce using rule 26 (condicionelse -> ELSE .)
+    WHILE           reduce using rule 26 (condicionelse -> ELSE .)
+    FOR             reduce using rule 26 (condicionelse -> ELSE .)
+    OPUNA           reduce using rule 26 (condicionelse -> ELSE .)
+    RETURN          reduce using rule 26 (condicionelse -> ELSE .)
+    COMENT          reduce using rule 26 (condicionelse -> ELSE .)
+    PRINT           reduce using rule 26 (condicionelse -> ELSE .)
+    ASIG            reduce using rule 26 (condicionelse -> ELSE .)
+    IF              reduce using rule 26 (condicionelse -> ELSE .)
+    ELSE            reduce using rule 26 (condicionelse -> ELSE .)
+
+
+state 18
+
+    (23) asignacion -> VAR . ID ASIG opestring
+
+    ID              shift and go to state 34
+
+
+state 19
+
+    (24) asignacion -> ID . ASIG opestring
+
+    ASIG            shift and go to state 35
+
+
+state 20
+
+    (25) condicionif -> IF . operacion
+    (9) operacion -> . operacion1
+    (10) operacion1 -> . operacion OPBIN operacion
+    (11) operacion1 -> . PARENA operacion PARENC
+    (12) operacion1 -> . inmediato
+    (6) inmediato -> . NUM
+    (7) inmediato -> . ID
+    (8) inmediato -> . EXPBOOL
+
+    PARENA          shift and go to state 38
+    NUM             shift and go to state 40
+    ID              shift and go to state 41
+    EXPBOOL         shift and go to state 42
+
+    operacion1                     shift and go to state 36
+    inmediato                      shift and go to state 39
+    operacion                      shift and go to state 37
+
+state 21
+
+    (38) instruccion -> opeunaria .
+
+    FIN             reduce using rule 38 (instruccion -> opeunaria .)
+    PROC            reduce using rule 38 (instruccion -> opeunaria .)
+    VAR             reduce using rule 38 (instruccion -> opeunaria .)
+    ID              reduce using rule 38 (instruccion -> opeunaria .)
+    WHILE           reduce using rule 38 (instruccion -> opeunaria .)
+    FOR             reduce using rule 38 (instruccion -> opeunaria .)
+    OPUNA           reduce using rule 38 (instruccion -> opeunaria .)
+    RETURN          reduce using rule 38 (instruccion -> opeunaria .)
+    COMENT          reduce using rule 38 (instruccion -> opeunaria .)
+    PRINT           reduce using rule 38 (instruccion -> opeunaria .)
+    ASIG            reduce using rule 38 (instruccion -> opeunaria .)
+    IF              reduce using rule 38 (instruccion -> opeunaria .)
+    ELSE            reduce using rule 38 (instruccion -> opeunaria .)
+
+
+state 22
+
+    (21) return -> RETURN . opestring
+    (13) opestring -> . STRING
+    (14) opestring -> . operacion
+    (9) operacion -> . operacion1
+    (10) operacion1 -> . operacion OPBIN operacion
+    (11) operacion1 -> . PARENA operacion PARENC
+    (12) operacion1 -> . inmediato
+    (6) inmediato -> . NUM
+    (7) inmediato -> . ID
+    (8) inmediato -> . EXPBOOL
+
+    STRING          shift and go to state 44
+    PARENA          shift and go to state 38
+    NUM             shift and go to state 40
+    ID              shift and go to state 41
+    EXPBOOL         shift and go to state 42
+
+    operacion1                     shift and go to state 36
+    inmediato                      shift and go to state 39
+    opestring                      shift and go to state 43
+    operacion                      shift and go to state 45
+
+state 23
+
+    (34) instruccion -> asignacion .
+
+    FIN             reduce using rule 34 (instruccion -> asignacion .)
+    PROC            reduce using rule 34 (instruccion -> asignacion .)
+    VAR             reduce using rule 34 (instruccion -> asignacion .)
+    ID              reduce using rule 34 (instruccion -> asignacion .)
+    WHILE           reduce using rule 34 (instruccion -> asignacion .)
+    FOR             reduce using rule 34 (instruccion -> asignacion .)
+    OPUNA           reduce using rule 34 (instruccion -> asignacion .)
+    RETURN          reduce using rule 34 (instruccion -> asignacion .)
+    COMENT          reduce using rule 34 (instruccion -> asignacion .)
+    PRINT           reduce using rule 34 (instruccion -> asignacion .)
+    ASIG            reduce using rule 34 (instruccion -> asignacion .)
+    IF              reduce using rule 34 (instruccion -> asignacion .)
+    ELSE            reduce using rule 34 (instruccion -> asignacion .)
+
+
+state 24
+
+    (0) S' -> root .
+
+
+
+state 25
+
+    (2) inicio -> instruccion . inicio
+    (3) inicio -> instruccion . fininstru
+    (2) inicio -> . instruccion inicio
+    (3) inicio -> . instruccion fininstru
+    (5) fininstru -> . FIN
+    (33) instruccion -> . procedimiento
+    (34) instruccion -> . asignacion
+    (35) instruccion -> . condicion
+    (36) instruccion -> . ciclowhile
+    (37) instruccion -> . ciclofor
+    (38) instruccion -> . opeunaria
+    (39) instruccion -> . return
+    (40) instruccion -> . comentario
+    (41) instruccion -> . imprime
+    (42) instruccion -> . preguntar
+    (22) procedimiento -> . PROC ID PARENA parametros PARENC
+    (23) asignacion -> . VAR ID ASIG opestring
+    (24) asignacion -> . ID ASIG opestring
+    (27) condicion -> . condicionif
+    (28) condicion -> . condicionelse
+    (29) ciclowhile -> . WHILE PARENA operacion PARENC
+    (30) ciclofor -> . FOR ID IN ID
+    (31) opeunaria -> . OPUNA ID
+    (21) return -> . RETURN opestring
+    (20) comentario -> . COMENT STRING
+    (19) imprime -> . PRINT PARENA opestring PARENC
+    (32) preguntar -> . ASIG ASK PARENA STRING PARENC
+    (25) condicionif -> . IF operacion
+    (26) condicionelse -> . ELSE
+
+    FIN             shift and go to state 48
+    PROC            shift and go to state 27
+    VAR             shift and go to state 18
+    ID              shift and go to state 19
+    WHILE           shift and go to state 3
+    FOR             shift and go to state 15
+    OPUNA           shift and go to state 11
+    RETURN          shift and go to state 22
+    COMENT          shift and go to state 1
+    PRINT           shift and go to state 6
+    ASIG            shift and go to state 8
+    IF              shift and go to state 20
+    ELSE            shift and go to state 17
+
+    opeunaria                      shift and go to state 21
+    return                         shift and go to state 14
+    asignacion                     shift and go to state 23
+    preguntar                      shift and go to state 9
+    instruccion                    shift and go to state 25
+    ciclofor                       shift and go to state 16
+    comentario                     shift and go to state 7
+    condicion                      shift and go to state 12
+    condicionelse                  shift and go to state 4
+    procedimiento                  shift and go to state 5
+    inicio                         shift and go to state 47
+    condicionif                    shift and go to state 26
+    imprime                        shift and go to state 2
+    ciclowhile                     shift and go to state 10
+    fininstru                      shift and go to state 46
+
+state 26
+
+    (27) condicion -> condicionif .
+
+    FIN             reduce using rule 27 (condicion -> condicionif .)
+    PROC            reduce using rule 27 (condicion -> condicionif .)
+    VAR             reduce using rule 27 (condicion -> condicionif .)
+    ID              reduce using rule 27 (condicion -> condicionif .)
+    WHILE           reduce using rule 27 (condicion -> condicionif .)
+    FOR             reduce using rule 27 (condicion -> condicionif .)
+    OPUNA           reduce using rule 27 (condicion -> condicionif .)
+    RETURN          reduce using rule 27 (condicion -> condicionif .)
+    COMENT          reduce using rule 27 (condicion -> condicionif .)
+    PRINT           reduce using rule 27 (condicion -> condicionif .)
+    ASIG            reduce using rule 27 (condicion -> condicionif .)
+    IF              reduce using rule 27 (condicion -> condicionif .)
+    ELSE            reduce using rule 27 (condicion -> condicionif .)
+
+
+state 27
+
+    (22) procedimiento -> PROC . ID PARENA parametros PARENC
+
+    ID              shift and go to state 49
+
+
+state 28
+
+    (20) comentario -> COMENT STRING .
+
+    FIN             reduce using rule 20 (comentario -> COMENT STRING .)
+    PROC            reduce using rule 20 (comentario -> COMENT STRING .)
+    VAR             reduce using rule 20 (comentario -> COMENT STRING .)
+    ID              reduce using rule 20 (comentario -> COMENT STRING .)
+    WHILE           reduce using rule 20 (comentario -> COMENT STRING .)
+    FOR             reduce using rule 20 (comentario -> COMENT STRING .)
+    OPUNA           reduce using rule 20 (comentario -> COMENT STRING .)
+    RETURN          reduce using rule 20 (comentario -> COMENT STRING .)
+    COMENT          reduce using rule 20 (comentario -> COMENT STRING .)
+    PRINT           reduce using rule 20 (comentario -> COMENT STRING .)
+    ASIG            reduce using rule 20 (comentario -> COMENT STRING .)
+    IF              reduce using rule 20 (comentario -> COMENT STRING .)
+    ELSE            reduce using rule 20 (comentario -> COMENT STRING .)
+
+
+state 29
+
+    (29) ciclowhile -> WHILE PARENA . operacion PARENC
+    (9) operacion -> . operacion1
+    (10) operacion1 -> . operacion OPBIN operacion
+    (11) operacion1 -> . PARENA operacion PARENC
+    (12) operacion1 -> . inmediato
+    (6) inmediato -> . NUM
+    (7) inmediato -> . ID
+    (8) inmediato -> . EXPBOOL
+
+    PARENA          shift and go to state 38
+    NUM             shift and go to state 40
+    ID              shift and go to state 41
+    EXPBOOL         shift and go to state 42
+
+    operacion1                     shift and go to state 36
+    inmediato                      shift and go to state 39
+    operacion                      shift and go to state 50
+
+state 30
+
+    (19) imprime -> PRINT PARENA . opestring PARENC
+    (13) opestring -> . STRING
+    (14) opestring -> . operacion
+    (9) operacion -> . operacion1
+    (10) operacion1 -> . operacion OPBIN operacion
+    (11) operacion1 -> . PARENA operacion PARENC
+    (12) operacion1 -> . inmediato
+    (6) inmediato -> . NUM
+    (7) inmediato -> . ID
+    (8) inmediato -> . EXPBOOL
+
+    STRING          shift and go to state 44
+    PARENA          shift and go to state 38
+    NUM             shift and go to state 40
+    ID              shift and go to state 41
+    EXPBOOL         shift and go to state 42
+
+    operacion1                     shift and go to state 36
+    inmediato                      shift and go to state 39
+    opestring                      shift and go to state 51
+    operacion                      shift and go to state 45
+
+state 31
+
+    (32) preguntar -> ASIG ASK . PARENA STRING PARENC
+
+    PARENA          shift and go to state 52
+
+
+state 32
+
+    (31) opeunaria -> OPUNA ID .
+
+    FIN             reduce using rule 31 (opeunaria -> OPUNA ID .)
+    PROC            reduce using rule 31 (opeunaria -> OPUNA ID .)
+    VAR             reduce using rule 31 (opeunaria -> OPUNA ID .)
+    ID              reduce using rule 31 (opeunaria -> OPUNA ID .)
+    WHILE           reduce using rule 31 (opeunaria -> OPUNA ID .)
+    FOR             reduce using rule 31 (opeunaria -> OPUNA ID .)
+    OPUNA           reduce using rule 31 (opeunaria -> OPUNA ID .)
+    RETURN          reduce using rule 31 (opeunaria -> OPUNA ID .)
+    COMENT          reduce using rule 31 (opeunaria -> OPUNA ID .)
+    PRINT           reduce using rule 31 (opeunaria -> OPUNA ID .)
+    ASIG            reduce using rule 31 (opeunaria -> OPUNA ID .)
+    IF              reduce using rule 31 (opeunaria -> OPUNA ID .)
+    ELSE            reduce using rule 31 (opeunaria -> OPUNA ID .)
+
+
+state 33
+
+    (30) ciclofor -> FOR ID . IN ID
+
+    IN              shift and go to state 53
+
+
+state 34
+
+    (23) asignacion -> VAR ID . ASIG opestring
+
+    ASIG            shift and go to state 54
+
+
+state 35
+
+    (24) asignacion -> ID ASIG . opestring
+    (13) opestring -> . STRING
+    (14) opestring -> . operacion
+    (9) operacion -> . operacion1
+    (10) operacion1 -> . operacion OPBIN operacion
+    (11) operacion1 -> . PARENA operacion PARENC
+    (12) operacion1 -> . inmediato
+    (6) inmediato -> . NUM
+    (7) inmediato -> . ID
+    (8) inmediato -> . EXPBOOL
+
+    STRING          shift and go to state 44
+    PARENA          shift and go to state 38
+    NUM             shift and go to state 40
+    ID              shift and go to state 41
+    EXPBOOL         shift and go to state 42
+
+    operacion1                     shift and go to state 36
+    inmediato                      shift and go to state 39
+    opestring                      shift and go to state 55
+    operacion                      shift and go to state 45
+
+state 36
+
+    (9) operacion -> operacion1 .
+
+    PARENC          reduce using rule 9 (operacion -> operacion1 .)
+    OPBIN           reduce using rule 9 (operacion -> operacion1 .)
+    COMA            reduce using rule 9 (operacion -> operacion1 .)
+    FIN             reduce using rule 9 (operacion -> operacion1 .)
+    PROC            reduce using rule 9 (operacion -> operacion1 .)
+    VAR             reduce using rule 9 (operacion -> operacion1 .)
+    ID              reduce using rule 9 (operacion -> operacion1 .)
+    WHILE           reduce using rule 9 (operacion -> operacion1 .)
+    FOR             reduce using rule 9 (operacion -> operacion1 .)
+    OPUNA           reduce using rule 9 (operacion -> operacion1 .)
+    RETURN          reduce using rule 9 (operacion -> operacion1 .)
+    COMENT          reduce using rule 9 (operacion -> operacion1 .)
+    PRINT           reduce using rule 9 (operacion -> operacion1 .)
+    ASIG            reduce using rule 9 (operacion -> operacion1 .)
+    IF              reduce using rule 9 (operacion -> operacion1 .)
+    ELSE            reduce using rule 9 (operacion -> operacion1 .)
+
+
+state 37
+
+    (25) condicionif -> IF operacion .
+    (10) operacion1 -> operacion . OPBIN operacion
+
+    FIN             reduce using rule 25 (condicionif -> IF operacion .)
+    PROC            reduce using rule 25 (condicionif -> IF operacion .)
+    VAR             reduce using rule 25 (condicionif -> IF operacion .)
+    ID              reduce using rule 25 (condicionif -> IF operacion .)
+    WHILE           reduce using rule 25 (condicionif -> IF operacion .)
+    FOR             reduce using rule 25 (condicionif -> IF operacion .)
+    OPUNA           reduce using rule 25 (condicionif -> IF operacion .)
+    RETURN          reduce using rule 25 (condicionif -> IF operacion .)
+    COMENT          reduce using rule 25 (condicionif -> IF operacion .)
+    PRINT           reduce using rule 25 (condicionif -> IF operacion .)
+    ASIG            reduce using rule 25 (condicionif -> IF operacion .)
+    IF              reduce using rule 25 (condicionif -> IF operacion .)
+    ELSE            reduce using rule 25 (condicionif -> IF operacion .)
+    OPBIN           shift and go to state 56
+
+
+state 38
+
+    (11) operacion1 -> PARENA . operacion PARENC
+    (9) operacion -> . operacion1
+    (10) operacion1 -> . operacion OPBIN operacion
+    (11) operacion1 -> . PARENA operacion PARENC
+    (12) operacion1 -> . inmediato
+    (6) inmediato -> . NUM
+    (7) inmediato -> . ID
+    (8) inmediato -> . EXPBOOL
+
+    PARENA          shift and go to state 38
+    NUM             shift and go to state 40
+    ID              shift and go to state 41
+    EXPBOOL         shift and go to state 42
+
+    operacion1                     shift and go to state 36
+    inmediato                      shift and go to state 39
+    operacion                      shift and go to state 57
+
+state 39
+
+    (12) operacion1 -> inmediato .
+
+    PARENC          reduce using rule 12 (operacion1 -> inmediato .)
+    OPBIN           reduce using rule 12 (operacion1 -> inmediato .)
+    FIN             reduce using rule 12 (operacion1 -> inmediato .)
+    PROC            reduce using rule 12 (operacion1 -> inmediato .)
+    VAR             reduce using rule 12 (operacion1 -> inmediato .)
+    ID              reduce using rule 12 (operacion1 -> inmediato .)
+    WHILE           reduce using rule 12 (operacion1 -> inmediato .)
+    FOR             reduce using rule 12 (operacion1 -> inmediato .)
+    OPUNA           reduce using rule 12 (operacion1 -> inmediato .)
+    RETURN          reduce using rule 12 (operacion1 -> inmediato .)
+    COMENT          reduce using rule 12 (operacion1 -> inmediato .)
+    PRINT           reduce using rule 12 (operacion1 -> inmediato .)
+    ASIG            reduce using rule 12 (operacion1 -> inmediato .)
+    IF              reduce using rule 12 (operacion1 -> inmediato .)
+    ELSE            reduce using rule 12 (operacion1 -> inmediato .)
+    COMA            reduce using rule 12 (operacion1 -> inmediato .)
+
+
+state 40
+
+    (6) inmediato -> NUM .
+
+    COMA            reduce using rule 6 (inmediato -> NUM .)
+    OPBIN           reduce using rule 6 (inmediato -> NUM .)
+    PARENC          reduce using rule 6 (inmediato -> NUM .)
+    FIN             reduce using rule 6 (inmediato -> NUM .)
+    PROC            reduce using rule 6 (inmediato -> NUM .)
+    VAR             reduce using rule 6 (inmediato -> NUM .)
+    ID              reduce using rule 6 (inmediato -> NUM .)
+    WHILE           reduce using rule 6 (inmediato -> NUM .)
+    FOR             reduce using rule 6 (inmediato -> NUM .)
+    OPUNA           reduce using rule 6 (inmediato -> NUM .)
+    RETURN          reduce using rule 6 (inmediato -> NUM .)
+    COMENT          reduce using rule 6 (inmediato -> NUM .)
+    PRINT           reduce using rule 6 (inmediato -> NUM .)
+    ASIG            reduce using rule 6 (inmediato -> NUM .)
+    IF              reduce using rule 6 (inmediato -> NUM .)
+    ELSE            reduce using rule 6 (inmediato -> NUM .)
+
+
+state 41
+
+    (7) inmediato -> ID .
+
+    COMA            reduce using rule 7 (inmediato -> ID .)
+    OPBIN           reduce using rule 7 (inmediato -> ID .)
+    PARENC          reduce using rule 7 (inmediato -> ID .)
+    FIN             reduce using rule 7 (inmediato -> ID .)
+    PROC            reduce using rule 7 (inmediato -> ID .)
+    VAR             reduce using rule 7 (inmediato -> ID .)
+    ID              reduce using rule 7 (inmediato -> ID .)
+    WHILE           reduce using rule 7 (inmediato -> ID .)
+    FOR             reduce using rule 7 (inmediato -> ID .)
+    OPUNA           reduce using rule 7 (inmediato -> ID .)
+    RETURN          reduce using rule 7 (inmediato -> ID .)
+    COMENT          reduce using rule 7 (inmediato -> ID .)
+    PRINT           reduce using rule 7 (inmediato -> ID .)
+    ASIG            reduce using rule 7 (inmediato -> ID .)
+    IF              reduce using rule 7 (inmediato -> ID .)
+    ELSE            reduce using rule 7 (inmediato -> ID .)
+
+
+state 42
+
+    (8) inmediato -> EXPBOOL .
+
+    COMA            reduce using rule 8 (inmediato -> EXPBOOL .)
+    OPBIN           reduce using rule 8 (inmediato -> EXPBOOL .)
+    PARENC          reduce using rule 8 (inmediato -> EXPBOOL .)
+    FIN             reduce using rule 8 (inmediato -> EXPBOOL .)
+    PROC            reduce using rule 8 (inmediato -> EXPBOOL .)
+    VAR             reduce using rule 8 (inmediato -> EXPBOOL .)
+    ID              reduce using rule 8 (inmediato -> EXPBOOL .)
+    WHILE           reduce using rule 8 (inmediato -> EXPBOOL .)
+    FOR             reduce using rule 8 (inmediato -> EXPBOOL .)
+    OPUNA           reduce using rule 8 (inmediato -> EXPBOOL .)
+    RETURN          reduce using rule 8 (inmediato -> EXPBOOL .)
+    COMENT          reduce using rule 8 (inmediato -> EXPBOOL .)
+    PRINT           reduce using rule 8 (inmediato -> EXPBOOL .)
+    ASIG            reduce using rule 8 (inmediato -> EXPBOOL .)
+    IF              reduce using rule 8 (inmediato -> EXPBOOL .)
+    ELSE            reduce using rule 8 (inmediato -> EXPBOOL .)
+
+
+state 43
+
+    (21) return -> RETURN opestring .
+
+    FIN             reduce using rule 21 (return -> RETURN opestring .)
+    PROC            reduce using rule 21 (return -> RETURN opestring .)
+    VAR             reduce using rule 21 (return -> RETURN opestring .)
+    ID              reduce using rule 21 (return -> RETURN opestring .)
+    WHILE           reduce using rule 21 (return -> RETURN opestring .)
+    FOR             reduce using rule 21 (return -> RETURN opestring .)
+    OPUNA           reduce using rule 21 (return -> RETURN opestring .)
+    RETURN          reduce using rule 21 (return -> RETURN opestring .)
+    COMENT          reduce using rule 21 (return -> RETURN opestring .)
+    PRINT           reduce using rule 21 (return -> RETURN opestring .)
+    ASIG            reduce using rule 21 (return -> RETURN opestring .)
+    IF              reduce using rule 21 (return -> RETURN opestring .)
+    ELSE            reduce using rule 21 (return -> RETURN opestring .)
+
+
+state 44
+
+    (13) opestring -> STRING .
+
+    FIN             reduce using rule 13 (opestring -> STRING .)
+    PROC            reduce using rule 13 (opestring -> STRING .)
+    VAR             reduce using rule 13 (opestring -> STRING .)
+    ID              reduce using rule 13 (opestring -> STRING .)
+    WHILE           reduce using rule 13 (opestring -> STRING .)
+    FOR             reduce using rule 13 (opestring -> STRING .)
+    OPUNA           reduce using rule 13 (opestring -> STRING .)
+    RETURN          reduce using rule 13 (opestring -> STRING .)
+    COMENT          reduce using rule 13 (opestring -> STRING .)
+    PRINT           reduce using rule 13 (opestring -> STRING .)
+    ASIG            reduce using rule 13 (opestring -> STRING .)
+    IF              reduce using rule 13 (opestring -> STRING .)
+    ELSE            reduce using rule 13 (opestring -> STRING .)
+    PARENC          reduce using rule 13 (opestring -> STRING .)
+
+
+state 45
+
+    (14) opestring -> operacion .
+    (10) operacion1 -> operacion . OPBIN operacion
+
+    FIN             reduce using rule 14 (opestring -> operacion .)
+    PROC            reduce using rule 14 (opestring -> operacion .)
+    VAR             reduce using rule 14 (opestring -> operacion .)
+    ID              reduce using rule 14 (opestring -> operacion .)
+    WHILE           reduce using rule 14 (opestring -> operacion .)
+    FOR             reduce using rule 14 (opestring -> operacion .)
+    OPUNA           reduce using rule 14 (opestring -> operacion .)
+    RETURN          reduce using rule 14 (opestring -> operacion .)
+    COMENT          reduce using rule 14 (opestring -> operacion .)
+    PRINT           reduce using rule 14 (opestring -> operacion .)
+    ASIG            reduce using rule 14 (opestring -> operacion .)
+    IF              reduce using rule 14 (opestring -> operacion .)
+    ELSE            reduce using rule 14 (opestring -> operacion .)
+    PARENC          reduce using rule 14 (opestring -> operacion .)
+    OPBIN           shift and go to state 56
+
+
+state 46
+
+    (3) inicio -> instruccion fininstru .
+
+    $end            reduce using rule 3 (inicio -> instruccion fininstru .)
+
+
+state 47
+
+    (2) inicio -> instruccion inicio .
+
+    $end            reduce using rule 2 (inicio -> instruccion inicio .)
+
+
+state 48
+
+    (5) fininstru -> FIN .
+
+    $end            reduce using rule 5 (fininstru -> FIN .)
+
+
+state 49
+
+    (22) procedimiento -> PROC ID . PARENA parametros PARENC
+
+    PARENA          shift and go to state 58
+
+
+state 50
+
+    (29) ciclowhile -> WHILE PARENA operacion . PARENC
+    (10) operacion1 -> operacion . OPBIN operacion
+
+    PARENC          shift and go to state 59
+    OPBIN           shift and go to state 56
+
+
+state 51
+
+    (19) imprime -> PRINT PARENA opestring . PARENC
+
+    PARENC          shift and go to state 60
+
+
+state 52
+
+    (32) preguntar -> ASIG ASK PARENA . STRING PARENC
+
+    STRING          shift and go to state 61
+
+
+state 53
+
+    (30) ciclofor -> FOR ID IN . ID
+
+    ID              shift and go to state 62
+
+
+state 54
+
+    (23) asignacion -> VAR ID ASIG . opestring
+    (13) opestring -> . STRING
+    (14) opestring -> . operacion
+    (9) operacion -> . operacion1
+    (10) operacion1 -> . operacion OPBIN operacion
+    (11) operacion1 -> . PARENA operacion PARENC
+    (12) operacion1 -> . inmediato
+    (6) inmediato -> . NUM
+    (7) inmediato -> . ID
+    (8) inmediato -> . EXPBOOL
+
+    STRING          shift and go to state 44
+    PARENA          shift and go to state 38
+    NUM             shift and go to state 40
+    ID              shift and go to state 41
+    EXPBOOL         shift and go to state 42
+
+    operacion1                     shift and go to state 36
+    inmediato                      shift and go to state 39
+    opestring                      shift and go to state 63
+    operacion                      shift and go to state 45
+
+state 55
+
+    (24) asignacion -> ID ASIG opestring .
+
+    FIN             reduce using rule 24 (asignacion -> ID ASIG opestring .)
+    PROC            reduce using rule 24 (asignacion -> ID ASIG opestring .)
+    VAR             reduce using rule 24 (asignacion -> ID ASIG opestring .)
+    ID              reduce using rule 24 (asignacion -> ID ASIG opestring .)
+    WHILE           reduce using rule 24 (asignacion -> ID ASIG opestring .)
+    FOR             reduce using rule 24 (asignacion -> ID ASIG opestring .)
+    OPUNA           reduce using rule 24 (asignacion -> ID ASIG opestring .)
+    RETURN          reduce using rule 24 (asignacion -> ID ASIG opestring .)
+    COMENT          reduce using rule 24 (asignacion -> ID ASIG opestring .)
+    PRINT           reduce using rule 24 (asignacion -> ID ASIG opestring .)
+    ASIG            reduce using rule 24 (asignacion -> ID ASIG opestring .)
+    IF              reduce using rule 24 (asignacion -> ID ASIG opestring .)
+    ELSE            reduce using rule 24 (asignacion -> ID ASIG opestring .)
+
+
+state 56
+
+    (10) operacion1 -> operacion OPBIN . operacion
+    (9) operacion -> . operacion1
+    (10) operacion1 -> . operacion OPBIN operacion
+    (11) operacion1 -> . PARENA operacion PARENC
+    (12) operacion1 -> . inmediato
+    (6) inmediato -> . NUM
+    (7) inmediato -> . ID
+    (8) inmediato -> . EXPBOOL
+
+    PARENA          shift and go to state 38
+    NUM             shift and go to state 40
+    ID              shift and go to state 41
+    EXPBOOL         shift and go to state 42
+
+    operacion1                     shift and go to state 36
+    inmediato                      shift and go to state 39
+    operacion                      shift and go to state 64
+
+state 57
+
+    (11) operacion1 -> PARENA operacion . PARENC
+    (10) operacion1 -> operacion . OPBIN operacion
+
+    PARENC          shift and go to state 65
+    OPBIN           shift and go to state 56
+
+
+state 58
+
+    (22) procedimiento -> PROC ID PARENA . parametros PARENC
+    (17) parametros -> . parametro
+    (18) parametros -> . empty
+    (15) parametro -> . operacion COMA parametro
+    (16) parametro -> . operacion
+    (4) empty -> .
+    (9) operacion -> . operacion1
+    (10) operacion1 -> . operacion OPBIN operacion
+    (11) operacion1 -> . PARENA operacion PARENC
+    (12) operacion1 -> . inmediato
+    (6) inmediato -> . NUM
+    (7) inmediato -> . ID
+    (8) inmediato -> . EXPBOOL
+
+    PARENC          reduce using rule 4 (empty -> .)
+    PARENA          shift and go to state 38
+    NUM             shift and go to state 40
+    ID              shift and go to state 41
+    EXPBOOL         shift and go to state 42
+
+    operacion                      shift and go to state 66
+    parametro                      shift and go to state 67
+    inmediato                      shift and go to state 39
+    operacion1                     shift and go to state 36
+    parametros                     shift and go to state 68
+    empty                          shift and go to state 69
+
+state 59
+
+    (29) ciclowhile -> WHILE PARENA operacion PARENC .
+
+    FIN             reduce using rule 29 (ciclowhile -> WHILE PARENA operacion PARENC .)
+    PROC            reduce using rule 29 (ciclowhile -> WHILE PARENA operacion PARENC .)
+    VAR             reduce using rule 29 (ciclowhile -> WHILE PARENA operacion PARENC .)
+    ID              reduce using rule 29 (ciclowhile -> WHILE PARENA operacion PARENC .)
+    WHILE           reduce using rule 29 (ciclowhile -> WHILE PARENA operacion PARENC .)
+    FOR             reduce using rule 29 (ciclowhile -> WHILE PARENA operacion PARENC .)
+    OPUNA           reduce using rule 29 (ciclowhile -> WHILE PARENA operacion PARENC .)
+    RETURN          reduce using rule 29 (ciclowhile -> WHILE PARENA operacion PARENC .)
+    COMENT          reduce using rule 29 (ciclowhile -> WHILE PARENA operacion PARENC .)
+    PRINT           reduce using rule 29 (ciclowhile -> WHILE PARENA operacion PARENC .)
+    ASIG            reduce using rule 29 (ciclowhile -> WHILE PARENA operacion PARENC .)
+    IF              reduce using rule 29 (ciclowhile -> WHILE PARENA operacion PARENC .)
+    ELSE            reduce using rule 29 (ciclowhile -> WHILE PARENA operacion PARENC .)
+
+
+state 60
+
+    (19) imprime -> PRINT PARENA opestring PARENC .
+
+    FIN             reduce using rule 19 (imprime -> PRINT PARENA opestring PARENC .)
+    PROC            reduce using rule 19 (imprime -> PRINT PARENA opestring PARENC .)
+    VAR             reduce using rule 19 (imprime -> PRINT PARENA opestring PARENC .)
+    ID              reduce using rule 19 (imprime -> PRINT PARENA opestring PARENC .)
+    WHILE           reduce using rule 19 (imprime -> PRINT PARENA opestring PARENC .)
+    FOR             reduce using rule 19 (imprime -> PRINT PARENA opestring PARENC .)
+    OPUNA           reduce using rule 19 (imprime -> PRINT PARENA opestring PARENC .)
+    RETURN          reduce using rule 19 (imprime -> PRINT PARENA opestring PARENC .)
+    COMENT          reduce using rule 19 (imprime -> PRINT PARENA opestring PARENC .)
+    PRINT           reduce using rule 19 (imprime -> PRINT PARENA opestring PARENC .)
+    ASIG            reduce using rule 19 (imprime -> PRINT PARENA opestring PARENC .)
+    IF              reduce using rule 19 (imprime -> PRINT PARENA opestring PARENC .)
+    ELSE            reduce using rule 19 (imprime -> PRINT PARENA opestring PARENC .)
+
+
+state 61
+
+    (32) preguntar -> ASIG ASK PARENA STRING . PARENC
+
+    PARENC          shift and go to state 70
+
+
+state 62
+
+    (30) ciclofor -> FOR ID IN ID .
+
+    FIN             reduce using rule 30 (ciclofor -> FOR ID IN ID .)
+    PROC            reduce using rule 30 (ciclofor -> FOR ID IN ID .)
+    VAR             reduce using rule 30 (ciclofor -> FOR ID IN ID .)
+    ID              reduce using rule 30 (ciclofor -> FOR ID IN ID .)
+    WHILE           reduce using rule 30 (ciclofor -> FOR ID IN ID .)
+    FOR             reduce using rule 30 (ciclofor -> FOR ID IN ID .)
+    OPUNA           reduce using rule 30 (ciclofor -> FOR ID IN ID .)
+    RETURN          reduce using rule 30 (ciclofor -> FOR ID IN ID .)
+    COMENT          reduce using rule 30 (ciclofor -> FOR ID IN ID .)
+    PRINT           reduce using rule 30 (ciclofor -> FOR ID IN ID .)
+    ASIG            reduce using rule 30 (ciclofor -> FOR ID IN ID .)
+    IF              reduce using rule 30 (ciclofor -> FOR ID IN ID .)
+    ELSE            reduce using rule 30 (ciclofor -> FOR ID IN ID .)
+
+
+state 63
+
+    (23) asignacion -> VAR ID ASIG opestring .
+
+    FIN             reduce using rule 23 (asignacion -> VAR ID ASIG opestring .)
+    PROC            reduce using rule 23 (asignacion -> VAR ID ASIG opestring .)
+    VAR             reduce using rule 23 (asignacion -> VAR ID ASIG opestring .)
+    ID              reduce using rule 23 (asignacion -> VAR ID ASIG opestring .)
+    WHILE           reduce using rule 23 (asignacion -> VAR ID ASIG opestring .)
+    FOR             reduce using rule 23 (asignacion -> VAR ID ASIG opestring .)
+    OPUNA           reduce using rule 23 (asignacion -> VAR ID ASIG opestring .)
+    RETURN          reduce using rule 23 (asignacion -> VAR ID ASIG opestring .)
+    COMENT          reduce using rule 23 (asignacion -> VAR ID ASIG opestring .)
+    PRINT           reduce using rule 23 (asignacion -> VAR ID ASIG opestring .)
+    ASIG            reduce using rule 23 (asignacion -> VAR ID ASIG opestring .)
+    IF              reduce using rule 23 (asignacion -> VAR ID ASIG opestring .)
+    ELSE            reduce using rule 23 (asignacion -> VAR ID ASIG opestring .)
+
+
+state 64
+
+    (10) operacion1 -> operacion OPBIN operacion .
+    (10) operacion1 -> operacion . OPBIN operacion
+
+  ! shift/reduce conflict for OPBIN resolved as shift
+    PARENC          reduce using rule 10 (operacion1 -> operacion OPBIN operacion .)
+    FIN             reduce using rule 10 (operacion1 -> operacion OPBIN operacion .)
+    PROC            reduce using rule 10 (operacion1 -> operacion OPBIN operacion .)
+    VAR             reduce using rule 10 (operacion1 -> operacion OPBIN operacion .)
+    ID              reduce using rule 10 (operacion1 -> operacion OPBIN operacion .)
+    WHILE           reduce using rule 10 (operacion1 -> operacion OPBIN operacion .)
+    FOR             reduce using rule 10 (operacion1 -> operacion OPBIN operacion .)
+    OPUNA           reduce using rule 10 (operacion1 -> operacion OPBIN operacion .)
+    RETURN          reduce using rule 10 (operacion1 -> operacion OPBIN operacion .)
+    COMENT          reduce using rule 10 (operacion1 -> operacion OPBIN operacion .)
+    PRINT           reduce using rule 10 (operacion1 -> operacion OPBIN operacion .)
+    ASIG            reduce using rule 10 (operacion1 -> operacion OPBIN operacion .)
+    IF              reduce using rule 10 (operacion1 -> operacion OPBIN operacion .)
+    ELSE            reduce using rule 10 (operacion1 -> operacion OPBIN operacion .)
+    COMA            reduce using rule 10 (operacion1 -> operacion OPBIN operacion .)
+    OPBIN           shift and go to state 56
+
+  ! OPBIN           [ reduce using rule 10 (operacion1 -> operacion OPBIN operacion .) ]
+
+
+state 65
+
+    (11) operacion1 -> PARENA operacion PARENC .
+
+    PARENC          reduce using rule 11 (operacion1 -> PARENA operacion PARENC .)
+    OPBIN           reduce using rule 11 (operacion1 -> PARENA operacion PARENC .)
+    FIN             reduce using rule 11 (operacion1 -> PARENA operacion PARENC .)
+    PROC            reduce using rule 11 (operacion1 -> PARENA operacion PARENC .)
+    VAR             reduce using rule 11 (operacion1 -> PARENA operacion PARENC .)
+    ID              reduce using rule 11 (operacion1 -> PARENA operacion PARENC .)
+    WHILE           reduce using rule 11 (operacion1 -> PARENA operacion PARENC .)
+    FOR             reduce using rule 11 (operacion1 -> PARENA operacion PARENC .)
+    OPUNA           reduce using rule 11 (operacion1 -> PARENA operacion PARENC .)
+    RETURN          reduce using rule 11 (operacion1 -> PARENA operacion PARENC .)
+    COMENT          reduce using rule 11 (operacion1 -> PARENA operacion PARENC .)
+    PRINT           reduce using rule 11 (operacion1 -> PARENA operacion PARENC .)
+    ASIG            reduce using rule 11 (operacion1 -> PARENA operacion PARENC .)
+    IF              reduce using rule 11 (operacion1 -> PARENA operacion PARENC .)
+    ELSE            reduce using rule 11 (operacion1 -> PARENA operacion PARENC .)
+    COMA            reduce using rule 11 (operacion1 -> PARENA operacion PARENC .)
+
+
+state 66
+
+    (15) parametro -> operacion . COMA parametro
+    (16) parametro -> operacion .
+    (10) operacion1 -> operacion . OPBIN operacion
+
+    COMA            shift and go to state 71
+    PARENC          reduce using rule 16 (parametro -> operacion .)
+    OPBIN           shift and go to state 56
+
+
+state 67
+
+    (17) parametros -> parametro .
+
+    PARENC          reduce using rule 17 (parametros -> parametro .)
+
+
+state 68
+
+    (22) procedimiento -> PROC ID PARENA parametros . PARENC
+
+    PARENC          shift and go to state 72
+
+
+state 69
+
+    (18) parametros -> empty .
+
+    PARENC          reduce using rule 18 (parametros -> empty .)
+
+
+state 70
+
+    (32) preguntar -> ASIG ASK PARENA STRING PARENC .
+
+    FIN             reduce using rule 32 (preguntar -> ASIG ASK PARENA STRING PARENC .)
+    PROC            reduce using rule 32 (preguntar -> ASIG ASK PARENA STRING PARENC .)
+    VAR             reduce using rule 32 (preguntar -> ASIG ASK PARENA STRING PARENC .)
+    ID              reduce using rule 32 (preguntar -> ASIG ASK PARENA STRING PARENC .)
+    WHILE           reduce using rule 32 (preguntar -> ASIG ASK PARENA STRING PARENC .)
+    FOR             reduce using rule 32 (preguntar -> ASIG ASK PARENA STRING PARENC .)
+    OPUNA           reduce using rule 32 (preguntar -> ASIG ASK PARENA STRING PARENC .)
+    RETURN          reduce using rule 32 (preguntar -> ASIG ASK PARENA STRING PARENC .)
+    COMENT          reduce using rule 32 (preguntar -> ASIG ASK PARENA STRING PARENC .)
+    PRINT           reduce using rule 32 (preguntar -> ASIG ASK PARENA STRING PARENC .)
+    ASIG            reduce using rule 32 (preguntar -> ASIG ASK PARENA STRING PARENC .)
+    IF              reduce using rule 32 (preguntar -> ASIG ASK PARENA STRING PARENC .)
+    ELSE            reduce using rule 32 (preguntar -> ASIG ASK PARENA STRING PARENC .)
+
+
+state 71
+
+    (15) parametro -> operacion COMA . parametro
+    (15) parametro -> . operacion COMA parametro
+    (16) parametro -> . operacion
+    (9) operacion -> . operacion1
+    (10) operacion1 -> . operacion OPBIN operacion
+    (11) operacion1 -> . PARENA operacion PARENC
+    (12) operacion1 -> . inmediato
+    (6) inmediato -> . NUM
+    (7) inmediato -> . ID
+    (8) inmediato -> . EXPBOOL
+
+    PARENA          shift and go to state 38
+    NUM             shift and go to state 40
+    ID              shift and go to state 41
+    EXPBOOL         shift and go to state 42
+
+    parametro                      shift and go to state 73
+    operacion1                     shift and go to state 36
+    inmediato                      shift and go to state 39
+    operacion                      shift and go to state 66
+
+state 72
+
+    (22) procedimiento -> PROC ID PARENA parametros PARENC .
+
+    FIN             reduce using rule 22 (procedimiento -> PROC ID PARENA parametros PARENC .)
+    PROC            reduce using rule 22 (procedimiento -> PROC ID PARENA parametros PARENC .)
+    VAR             reduce using rule 22 (procedimiento -> PROC ID PARENA parametros PARENC .)
+    ID              reduce using rule 22 (procedimiento -> PROC ID PARENA parametros PARENC .)
+    WHILE           reduce using rule 22 (procedimiento -> PROC ID PARENA parametros PARENC .)
+    FOR             reduce using rule 22 (procedimiento -> PROC ID PARENA parametros PARENC .)
+    OPUNA           reduce using rule 22 (procedimiento -> PROC ID PARENA parametros PARENC .)
+    RETURN          reduce using rule 22 (procedimiento -> PROC ID PARENA parametros PARENC .)
+    COMENT          reduce using rule 22 (procedimiento -> PROC ID PARENA parametros PARENC .)
+    PRINT           reduce using rule 22 (procedimiento -> PROC ID PARENA parametros PARENC .)
+    ASIG            reduce using rule 22 (procedimiento -> PROC ID PARENA parametros PARENC .)
+    IF              reduce using rule 22 (procedimiento -> PROC ID PARENA parametros PARENC .)
+    ELSE            reduce using rule 22 (procedimiento -> PROC ID PARENA parametros PARENC .)
+
+
+state 73
+
+    (15) parametro -> operacion COMA parametro .
+
+    PARENC          reduce using rule 15 (parametro -> operacion COMA parametro .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for OPBIN in state 64 resolved as shift

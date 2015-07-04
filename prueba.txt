@@ -1,8 +1,8 @@
-procedimiento main()
+procedimiento main ()
 	<-- Comentario
 	var x = 32
 	mientras x >= 0 entonces
-		imprima(x + (x-2))
+		imprima ( x + ( x-2 ) )
 		--x
 	fin
 fin
