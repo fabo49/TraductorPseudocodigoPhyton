@@ -1,0 +1,49 @@
+Metadata-Version: 1.1
+Name: times
+Version: 0.7
+Summary: Times is a small, minimalistic, Python library for dealing with time conversions between universal time and arbitrary timezones.
+Home-page: https://github.com/nvie/times/
+Author: Vincent Driessen
+Author-email: vincent@3rdcloud.com
+License: BSD
+Description: UNKNOWN
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Environment :: MacOS X
+Classifier: Environment :: No Input/Output (Daemon)
+Classifier: Environment :: Other Environment
+Classifier: Environment :: Plugins
+Classifier: Environment :: Web Environment
+Classifier: Environment :: Win32 (MS Windows)
+Classifier: Framework :: Buildout
+Classifier: Framework :: CherryPy
+Classifier: Framework :: Django
+Classifier: Framework :: Plone
+Classifier: Framework :: Pylons
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Financial and Insurance Industry
+Classifier: Intended Audience :: Healthcare Industry
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: Legal Industry
+Classifier: Intended Audience :: Manufacturing
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Internet
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Office/Business
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Software Development
+Classifier: Topic :: System
+Classifier: Topic :: Terminals
+Classifier: Topic :: Utilities

@@ -1,8 +1,7 @@
-procedimiento main ()
-	<-- Comentario
+procedimiento main()
 	var x = 32
-	mientras x >= 0 entonces
-		imprima ( x + ( x-2 ) )
-		--x
+	$'Prueba de comentario'
+	si x == 32
+		imprimir('Todo bien')
 	fin
 fin
