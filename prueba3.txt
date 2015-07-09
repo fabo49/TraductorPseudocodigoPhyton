@@ -1,0 +1,23 @@
+procedimiento multiplicar(x, y)
+  retornar x*y
+fin
+
+$'Funcion que hace un ciclo'
+procedimiento cicloSumador(inicio)
+  var count = inicio
+  var respuesta = 0
+  mientras (count != 0) entonces
+    respuesta += suma(count, count+3)
+    count -= 1
+  fin
+  retornar respuesta
+fin
+
+procedimiento main()
+  var dato = preguntar('Ingrese desde donde quiere empezar el ciclo ')
+  var respuesta = 0
+  respuesta = cicloSumador(dato)
+  imprimir('El resultado final es')
+  imprimir(respuesta)
+  respuesta = str(dato+2)
+fin

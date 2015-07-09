@@ -18,7 +18,7 @@ tokens = ['ID', 'COMA', 'PARENA', 'PARENC', 'OPBIN', 'OPUNA', 'ASIG', 'NUM', 'EX
 reserved = {
 	'mientras' : 'WHILE',
 	'si_no' : 'ELSE',
-	'para cada' : 'FOR',
+	'para_cada' : 'FOR',
 	'en' : 'IN',
 	'si' : 'IF',
 	'fin' : 'FIN',
@@ -237,7 +237,7 @@ def p_comentario(p):
 # puede retornar operaciones o strings
 def p_return(p):
 	'''return : RETURN opestring'''
-	p[0] = add_tabs(False) + 'return( ' + str(p[2]) + ')'
+	p[0] = add_tabs(False) + 'return(' + str(p[2]) + ')'
 
 # estructura general de un procedimiento
 def p_procedimiento(p):
@@ -250,11 +250,15 @@ def p_procedimiento(p):
 # estructura de una asignacion a una variable
 def p_asignacion(p):
 	'''asignacion : VAR ID ASIG opestring'''
-	p[0] = add_tabs(False) + str(p[2]) + str(p[3]) + str(p[4])
+	p[0] = add_tabs(False) + str(p[2]) + ' ' + str(p[3]) + ' ' + str(p[4])
 
 def p_asignacion_sindeclaracion(p):
 	'''asignacion : ID ASIG opestring'''
-	p[0] = add_tabs(False) + str(p[1]) + str(p[2]) + str(p[3])
+	p[0] = add_tabs(False) + str(p[1]) + ' ' + str(p[2]) + ' ' + str(p[3])
+
+def p_asignacion_llamado(p):
+	'''asignacion : ID ASIG ID PARENA parametros PARENC'''
+	p[0] = add_tabs(False) + str(p[1]) + ' ' + str(p[2]) + ' ' + str(p[3]) + '(' + str(p[5]) +')'
 
 # estructura de un condicional (if / else)
 def p_condicionif(p):
@@ -262,7 +266,7 @@ def p_condicionif(p):
 	p[0] = add_tabs(False) + 'if(' + str(p[2]) + '):'
 	global m_tabs
 	m_tabs += 1
-	
+
 def p_condicionelse(p):
 	'''condicionelse : ELSE'''
 	global m_tabs
@@ -316,6 +320,8 @@ def p_llamado(p):
 #	- un comentario
 #	- imprimir
 #	- preguntar al usuario
+#	- fin de un bloque de codigo
+#	- un llamado a una funcion o procedimiento
 # ademas acepta instrucciones que estan identadas
 def p_instruccion(p):
 	''' instruccion : procedimiento
@@ -342,13 +348,15 @@ def p_error(p):
 	else:
 		m_reporte += "Error en "+str(m_totLineas)+'\n'
 		print(m_reporte)
+	exit()
+	m_reporte = ""
 
 yacc.yacc()
 # programa
 
 sfname = ""
 sfname = str(raw_input('Ingrese el nombre del archivo que desea convertir a python> '))
-sourceFile = open(sfname, 'r')
+sourceFile = open(sfname+".txt", 'r')
 pseudo = ""
 for line in sourceFile:
 	pseudo += str(line)
