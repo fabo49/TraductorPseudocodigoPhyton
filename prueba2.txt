@@ -1,0 +1,20 @@
+procedimiento sumador(a, b)
+  var tmp1 = a+1
+  var tmp2 = b+3
+  var result = 0
+  $'Esa variable va a retornarse'
+  mientras(tmp1 >= 1) entonces
+    si b != 0
+      result += (tmp1+tmp2)-(a/b)
+    si_no
+      imprimir('El valor de b no es admitido ya que es un cero')
+    fin
+  fin
+  imprimir(result)
+fin
+
+procedimiento main()
+  var num1 = preguntar('Ingrese el primer numero ')
+  var num2 = preguntar('Ingrese el segundo numero ')
+  sumador(num1, num2)
+fin

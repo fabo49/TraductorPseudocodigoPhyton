@@ -17,7 +17,7 @@ tokens = ['ID', 'COMA', 'PARENA', 'PARENC', 'OPBIN', 'OPUNA', 'ASIG', 'NUM', 'EX
 
 reserved = {
 	'mientras' : 'WHILE',
-	'si no' : 'ELSE',
+	'si_no' : 'ELSE',
 	'para cada' : 'FOR',
 	'en' : 'IN',
 	'si' : 'IF',
@@ -57,16 +57,16 @@ def t_OPUNA(t):
 	r'\+\+|--'
 	return t
 
+def t_ASIG(t):
+	r'=|\+=|-=|\*=|/='
+	return t
+
 def t_OPBIN(t):
 	r'\+|-|\*|/|%|==|!=|>=|<=|>|<|\.y\.|\.o\.'
 	if t.value == '.y.':
 		t.value = 'and'
 	elif t.value == '.o.':
 		t.value = 'or'
-	return t
-
-def t_ASIG(t):
-	r'=|\+=|-=|\*=|/='
 	return t
 
 def t_NUM(t):
@@ -108,9 +108,11 @@ lex.lex()
 
 
 # Metodo auxiliar que se encarga de hacer la identacion de cada linea en python
-def add_tabs():
+def add_tabs(b):
 	global m_tabs
-	nivel = "\n"		# para hacer el cambio de linea despues de la instruccion
+	nivel = ''
+	if(b == False):
+		nivel = "\n"		# para hacer el cambio de linea despues de la instruccion
 	tmp = m_tabs
 	while tmp > 0:	# agrega tantos tabs como lo inque m_tabs
 		nivel += "\t"
@@ -173,7 +175,7 @@ def p_fin(p):
 		m_tabs -= 1
 	else:
 		m_tabs = 0
-	p[0] = add_tabs() + ''
+	p[0] = add_tabs(True) + ''
 
 # para reconocer tanto numeros solos, ids solos, expresiones booleanas (True/False) solas o strings
 def p_inmediato(p):
@@ -224,82 +226,86 @@ def p_parametros(p):
 # reconoce cuando se solicita imprimir algo en consola
 def p_imprime(p):
 	'''imprime : PRINT PARENA opestring PARENC '''
-	p[0] = add_tabs() + 'print(' + str(p[3]) + ')'
+	p[0] = add_tabs(False) + 'print(' + str(p[3]) + ')'
 
 # reconoce comentarios y comentarios identados
 def p_comentario(p):
 	'''comentario : COMENT STRING'''
-	p[0] = add_tabs() + '# ' + str(p[2])
+	p[0] = add_tabs(False) + '# ' + str(p[2])
 
 # reconoce la instruccion para retornar de una funcion
 # puede retornar operaciones o strings
 def p_return(p):
 	'''return : RETURN opestring'''
-	p[0] = add_tabs() + 'return( ' + str(p[2]) + ')'
+	p[0] = add_tabs(False) + 'return( ' + str(p[2]) + ')'
 
 # estructura general de un procedimiento
 def p_procedimiento(p):
 	'''procedimiento : PROC ID PARENA parametros PARENC'''
-	p[0] = add_tabs() + 'def ' + str(p[2]) + '(' + str(p[4]) + '):'
 	global m_tabs
+	m_tabs = 0
+	p[0] = add_tabs(False) + 'def ' + str(p[2]) + '(' + str(p[4]) + '):'
 	m_tabs += 1
 
 # estructura de una asignacion a una variable
 def p_asignacion(p):
 	'''asignacion : VAR ID ASIG opestring'''
-	p[0] = add_tabs() + str(p[2]) + str(p[3]) + str(p[4])
+	p[0] = add_tabs(False) + str(p[2]) + str(p[3]) + str(p[4])
 
 def p_asignacion_sindeclaracion(p):
 	'''asignacion : ID ASIG opestring'''
-	p[0] = add_tabs() + str(p[1]) + str(p[2]) + str(p[3])
+	p[0] = add_tabs(False) + str(p[1]) + str(p[2]) + str(p[3])
 
 # estructura de un condicional (if / else)
 def p_condicionif(p):
 	'''condicionif : IF operacion'''
-	p[0] = add_tabs() + 'if(' + str(p[2]) + '):'
-
+	p[0] = add_tabs(False) + 'if(' + str(p[2]) + '):'
+	global m_tabs
+	m_tabs += 1
+	
 def p_condicionelse(p):
 	'''condicionelse : ELSE'''
 	global m_tabs
 	m_tabs -= 1
-	p[0] = add_tabs() +'else:'
+	p[0] = add_tabs(False) +'else:'
 	m_tabs += 1
 
 def p_condicion(p):
 	'''condicion : condicionif
 				 | condicionelse'''
 	p[0] = str(p[1])
-	global m_tabs
-	m_tabs += 1
 
 # estructura de un ciclo while
 def p_ciclowhile(p):
 	'''ciclowhile : WHILE PARENA operacion PARENC ENTONCES'''
-	p[0] = add_tabs() + 'while(' + str(p[3]) + '):'
+	p[0] = add_tabs(False) + 'while(' + str(p[3]) + '):'
 	global m_tabs
 	m_tabs += 1
 
 # estructura de un ciclo for
 def p_ciclofor(p):
 	'''ciclofor : FOR ID IN ID'''
-	p[0] = add_tabs() + 'for ' + str(p[2]) + ' in ' + str(p[4]) +':'
+	p[0] = add_tabs(False) + 'for ' + str(p[2]) + ' in ' + str(p[4]) +':'
 	global m_tabs
 	m_tabs += 1
 
 # estructura de una operacion unaria
 def p_operacionunaria(p):
 	'''opeunaria : OPUNA ID '''
-	p[0] = add_tabs() + str(p[1]) + str(p[2])
+	p[0] = add_tabs(False) + str(p[1]) + str(p[2])
 
 # reconoce la estructura de un "input" en el pseudocodigo
 def p_preguntar(p):
 	'''preguntar : VAR ID ASIG ASK PARENA STRING PARENC '''
-	p[0] = add_tabs() + str(p[2]) + 'input(' + str(p[5]) +')'
+	p[0] = add_tabs(False) + str(p[2]) + ' = input(' + str(p[6]) +')'
 
 def p_preguntar2(p):
 	'''preguntar : ID ASIG ASK PARENA STRING PARENC'''
-	p[0] = add_tabs() + str(p[1]) + " = input(" + str(p[5]) + ')'
+	p[0] = add_tabs(False) + str(p[1]) + " = input(" + str(p[5]) + ')'
 
+def p_llamado(p):
+	'''llamado : ID PARENA parametros PARENC'''
+	p[0] = add_tabs(False) + str(p[1]) + '(' + str(p[3]) + ')'
 # estructura general de una linea de programa que puede ser:
 # 	- un procedimiento (metodo / funcion)
 # 	- una asignacion
@@ -322,7 +328,8 @@ def p_instruccion(p):
 					| comentario
 					| imprime
 					| preguntar
-					| fininstru'''
+					| fininstru
+					| llamado'''
 	global m_tabs
 	p[0] = str(p[1])
 

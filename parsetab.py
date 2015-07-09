@@ -5,9 +5,9 @@ _tabversion = '3.5'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'A221DF1DBA4A06BEB347F10D3FD0B5A1'
+_lr_signature = '88368CB21DF1C02900A8879107CA42DA'
     
-_lr_action_items = {'COMENT':([0,3,4,6,7,8,9,11,12,15,17,18,20,23,24,26,28,30,31,32,33,34,35,37,38,39,41,45,54,58,59,60,61,62,72,74,76,78,],[1,-28,-34,-42,-41,-43,-37,-36,-44,-40,-38,-26,-5,-39,-35,1,-27,-20,-21,-13,-14,-6,-9,-12,-7,-8,-31,-25,-24,-10,-11,-19,-30,-23,-29,-22,-33,-32,]),'RETURN':([0,3,4,6,7,8,9,11,12,15,17,18,20,23,24,26,28,30,31,32,33,34,35,37,38,39,41,45,54,58,59,60,61,62,72,74,76,78,],[2,-28,-34,-42,-41,-43,-37,-36,-44,-40,-38,-26,-5,-39,-35,2,-27,-20,-21,-13,-14,-6,-9,-12,-7,-8,-31,-25,-24,-10,-11,-19,-30,-23,-29,-22,-33,-32,]),'ENTONCES':([65,],[72,]),'COMA':([34,35,37,38,39,58,59,66,],[-6,-9,-12,-7,-8,-10,-11,73,]),'WHILE':([0,3,4,6,7,8,9,11,12,15,17,18,20,23,24,26,28,30,31,32,33,34,35,37,38,39,41,45,54,58,59,60,61,62,72,74,76,78,],[27,-28,-34,-42,-41,-43,-37,-36,-44,-40,-38,-26,-5,-39,-35,27,-27,-20,-21,-13,-14,-6,-9,-12,-7,-8,-31,-25,-24,-10,-11,-19,-30,-23,-29,-22,-33,-32,]),'PRINT':([0,3,4,6,7,8,9,11,12,15,17,18,20,23,24,26,28,30,31,32,33,34,35,37,38,39,41,45,54,58,59,60,61,62,72,74,76,78,],[5,-28,-34,-42,-41,-43,-37,-36,-44,-40,-38,-26,-5,-39,-35,5,-27,-20,-21,-13,-14,-6,-9,-12,-7,-8,-31,-25,-24,-10,-11,-19,-30,-23,-29,-22,-33,-32,]),'ASIG':([21,43,],[44,53,]),'NUM':([2,22,36,40,44,47,49,53,57,73,],[34,34,34,34,34,34,34,34,34,34,]),'ASK':([44,53,],[55,63,]),'EXPBOOL':([2,22,36,40,44,47,49,53,57,73,],[39,39,39,39,39,39,39,39,39,39,]),'$end':([0,3,4,6,7,8,9,11,12,13,14,15,17,18,20,23,24,25,26,28,30,31,32,33,34,35,37,38,39,41,45,46,54,58,59,60,61,62,72,74,76,78,],[-4,-28,-34,-42,-41,-43,-37,-36,-44,-1,-3,-40,-38,-26,-5,-39,-35,0,-4,-27,-20,-21,-13,-14,-6,-9,-12,-7,-8,-31,-25,-2,-24,-10,-11,-19,-30,-23,-29,-22,-33,-32,]),'STRING':([1,2,40,44,53,64,70,],[30,32,32,32,32,71,75,]),'FOR':([0,3,4,6,7,8,9,11,12,15,17,18,20,23,24,26,28,30,31,32,33,34,35,37,38,39,41,45,54,58,59,60,61,62,72,74,76,78,],[16,-28,-34,-42,-41,-43,-37,-36,-44,-40,-38,-26,-5,-39,-35,16,-27,-20,-21,-13,-14,-6,-9,-12,-7,-8,-31,-25,-24,-10,-11,-19,-30,-23,-29,-22,-33,-32,]),'OPBIN':([33,34,35,37,38,39,45,50,56,58,59,66,],[49,-6,-9,-12,-7,-8,49,49,49,49,-11,49,]),'ELSE':([0,3,4,6,7,8,9,11,12,15,17,18,20,23,24,26,28,30,31,32,33,34,35,37,38,39,41,45,54,58,59,60,61,62,72,74,76,78,],[18,-28,-34,-42,-41,-43,-37,-36,-44,-40,-38,-26,-5,-39,-35,18,-27,-20,-21,-13,-14,-6,-9,-12,-7,-8,-31,-25,-24,-10,-11,-19,-30,-23,-29,-22,-33,-32,]),'PARENC':([32,33,34,35,37,38,39,50,51,56,57,58,59,66,67,68,69,71,75,77,],[-13,-14,-6,-9,-12,-7,-8,59,60,65,-4,-10,-11,-16,-17,74,-18,76,78,-15,]),'PARENA':([2,5,22,27,36,40,44,47,48,49,53,55,57,63,73,],[36,40,36,47,36,36,36,36,57,36,36,64,36,70,36,]),'IN':([42,],[52,]),'VAR':([0,3,4,6,7,8,9,11,12,15,17,18,20,23,24,26,28,30,31,32,33,34,35,37,38,39,41,45,54,58,59,60,61,62,72,74,76,78,],[19,-28,-34,-42,-41,-43,-37,-36,-44,-40,-38,-26,-5,-39,-35,19,-27,-20,-21,-13,-14,-6,-9,-12,-7,-8,-31,-25,-24,-10,-11,-19,-30,-23,-29,-22,-33,-32,]),'FIN':([0,3,4,6,7,8,9,11,12,15,17,18,20,23,24,26,28,30,31,32,33,34,35,37,38,39,41,45,54,58,59,60,61,62,72,74,76,78,],[20,-28,-34,-42,-41,-43,-37,-36,-44,-40,-38,-26,-5,-39,-35,20,-27,-20,-21,-13,-14,-6,-9,-12,-7,-8,-31,-25,-24,-10,-11,-19,-30,-23,-29,-22,-33,-32,]),'ID':([0,2,3,4,6,7,8,9,10,11,12,15,16,17,18,19,20,22,23,24,26,28,29,30,31,32,33,34,35,36,37,38,39,40,41,44,45,47,49,52,53,54,57,58,59,60,61,62,72,73,74,76,78,],[21,38,-28,-34,-42,-41,-43,-37,41,-36,-44,-40,42,-38,-26,43,-5,38,-39,-35,21,-27,48,-20,-21,-13,-14,-6,-9,38,-12,-7,-8,38,-31,38,-25,38,38,61,38,-24,38,-10,-11,-19,-30,-23,-29,38,-22,-33,-32,]),'IF':([0,3,4,6,7,8,9,11,12,15,17,18,20,23,24,26,28,30,31,32,33,34,35,37,38,39,41,45,54,58,59,60,61,62,72,74,76,78,],[22,-28,-34,-42,-41,-43,-37,-36,-44,-40,-38,-26,-5,-39,-35,22,-27,-20,-21,-13,-14,-6,-9,-12,-7,-8,-31,-25,-24,-10,-11,-19,-30,-23,-29,-22,-33,-32,]),'OPUNA':([0,3,4,6,7,8,9,11,12,15,17,18,20,23,24,26,28,30,31,32,33,34,35,37,38,39,41,45,54,58,59,60,61,62,72,74,76,78,],[10,-28,-34,-42,-41,-43,-37,-36,-44,-40,-38,-26,-5,-39,-35,10,-27,-20,-21,-13,-14,-6,-9,-12,-7,-8,-31,-25,-24,-10,-11,-19,-30,-23,-29,-22,-33,-32,]),'PROC':([0,3,4,6,7,8,9,11,12,15,17,18,20,23,24,26,28,30,31,32,33,34,35,37,38,39,41,45,54,58,59,60,61,62,72,74,76,78,],[29,-28,-34,-42,-41,-43,-37,-36,-44,-40,-38,-26,-5,-39,-35,29,-27,-20,-21,-13,-14,-6,-9,-12,-7,-8,-31,-25,-24,-10,-11,-19,-30,-23,-29,-22,-33,-32,]),}
+_lr_action_items = {'COMENT':([0,3,4,6,7,8,9,11,12,15,16,18,19,21,24,25,27,29,31,32,33,34,35,36,38,39,40,42,47,56,64,65,66,67,68,72,78,79,81,82,],[1,-28,-35,-43,-42,-44,-38,-37,-45,-46,-41,-39,-26,-5,-40,-36,1,-27,-20,-21,-13,-14,-6,-9,-12,-7,-8,-31,-25,-24,-10,-11,-19,-30,-23,-34,-29,-22,-33,-32,]),'RETURN':([0,3,4,6,7,8,9,11,12,15,16,18,19,21,24,25,27,29,31,32,33,34,35,36,38,39,40,42,47,56,64,65,66,67,68,72,78,79,81,82,],[2,-28,-35,-43,-42,-44,-38,-37,-45,-46,-41,-39,-26,-5,-40,-36,2,-27,-20,-21,-13,-14,-6,-9,-12,-7,-8,-31,-25,-24,-10,-11,-19,-30,-23,-34,-29,-22,-33,-32,]),'ENTONCES':([73,],[78,]),'COMA':([35,36,38,39,40,58,64,65,],[-6,-9,-12,-7,-8,71,-10,-11,]),'WHILE':([0,3,4,6,7,8,9,11,12,15,16,18,19,21,24,25,27,29,31,32,33,34,35,36,38,39,40,42,47,56,64,65,66,67,68,72,78,79,81,82,],[28,-28,-35,-43,-42,-44,-38,-37,-45,-46,-41,-39,-26,-5,-40,-36,28,-27,-20,-21,-13,-14,-6,-9,-12,-7,-8,-31,-25,-24,-10,-11,-19,-30,-23,-34,-29,-22,-33,-32,]),'PRINT':([0,3,4,6,7,8,9,11,12,15,16,18,19,21,24,25,27,29,31,32,33,34,35,36,38,39,40,42,47,56,64,65,66,67,68,72,78,79,81,82,],[5,-28,-35,-43,-42,-44,-38,-37,-45,-46,-41,-39,-26,-5,-40,-36,5,-27,-20,-21,-13,-14,-6,-9,-12,-7,-8,-31,-25,-24,-10,-11,-19,-30,-23,-34,-29,-22,-33,-32,]),'ASIG':([22,44,],[45,55,]),'NUM':([2,23,37,41,45,46,49,51,55,63,71,],[35,35,35,35,35,35,35,35,35,35,35,]),'ASK':([45,55,],[57,69,]),'EXPBOOL':([2,23,37,41,45,46,49,51,55,63,71,],[40,40,40,40,40,40,40,40,40,40,40,]),'$end':([0,3,4,6,7,8,9,11,12,13,14,15,16,18,19,21,24,25,26,27,29,31,32,33,34,35,36,38,39,40,42,47,48,56,64,65,66,67,68,72,78,79,81,82,],[-4,-28,-35,-43,-42,-44,-38,-37,-45,-1,-3,-46,-41,-39,-26,-5,-40,-36,0,-4,-27,-20,-21,-13,-14,-6,-9,-12,-7,-8,-31,-25,-2,-24,-10,-11,-19,-30,-23,-34,-29,-22,-33,-32,]),'STRING':([1,2,41,45,55,70,75,],[31,33,33,33,33,76,80,]),'FOR':([0,3,4,6,7,8,9,11,12,15,16,18,19,21,24,25,27,29,31,32,33,34,35,36,38,39,40,42,47,56,64,65,66,67,68,72,78,79,81,82,],[17,-28,-35,-43,-42,-44,-38,-37,-45,-46,-41,-39,-26,-5,-40,-36,17,-27,-20,-21,-13,-14,-6,-9,-12,-7,-8,-31,-25,-24,-10,-11,-19,-30,-23,-34,-29,-22,-33,-32,]),'OPBIN':([34,35,36,38,39,40,47,52,58,62,64,65,],[51,-6,-9,-12,-7,-8,51,51,51,51,51,-11,]),'ELSE':([0,3,4,6,7,8,9,11,12,15,16,18,19,21,24,25,27,29,31,32,33,34,35,36,38,39,40,42,47,56,64,65,66,67,68,72,78,79,81,82,],[19,-28,-35,-43,-42,-44,-38,-37,-45,-46,-41,-39,-26,-5,-40,-36,19,-27,-20,-21,-13,-14,-6,-9,-12,-7,-8,-31,-25,-24,-10,-11,-19,-30,-23,-34,-29,-22,-33,-32,]),'PARENC':([33,34,35,36,38,39,40,46,52,53,58,59,60,61,62,63,64,65,74,76,77,80,],[-13,-14,-6,-9,-12,-7,-8,-4,65,66,-16,-17,72,-18,73,-4,-10,-11,79,81,-15,82,]),'PARENA':([2,5,22,23,28,37,41,45,46,49,50,51,55,57,63,69,71,],[37,41,46,37,49,37,37,37,37,37,63,37,37,70,37,75,37,]),'IN':([43,],[54,]),'VAR':([0,3,4,6,7,8,9,11,12,15,16,18,19,21,24,25,27,29,31,32,33,34,35,36,38,39,40,42,47,56,64,65,66,67,68,72,78,79,81,82,],[20,-28,-35,-43,-42,-44,-38,-37,-45,-46,-41,-39,-26,-5,-40,-36,20,-27,-20,-21,-13,-14,-6,-9,-12,-7,-8,-31,-25,-24,-10,-11,-19,-30,-23,-34,-29,-22,-33,-32,]),'FIN':([0,3,4,6,7,8,9,11,12,15,16,18,19,21,24,25,27,29,31,32,33,34,35,36,38,39,40,42,47,56,64,65,66,67,68,72,78,79,81,82,],[21,-28,-35,-43,-42,-44,-38,-37,-45,-46,-41,-39,-26,-5,-40,-36,21,-27,-20,-21,-13,-14,-6,-9,-12,-7,-8,-31,-25,-24,-10,-11,-19,-30,-23,-34,-29,-22,-33,-32,]),'ID':([0,2,3,4,6,7,8,9,10,11,12,15,16,17,18,19,20,21,23,24,25,27,29,30,31,32,33,34,35,36,37,38,39,40,41,42,45,46,47,49,51,54,55,56,63,64,65,66,67,68,71,72,78,79,81,82,],[22,39,-28,-35,-43,-42,-44,-38,42,-37,-45,-46,-41,43,-39,-26,44,-5,39,-40,-36,22,-27,50,-20,-21,-13,-14,-6,-9,39,-12,-7,-8,39,-31,39,39,-25,39,39,67,39,-24,39,-10,-11,-19,-30,-23,39,-34,-29,-22,-33,-32,]),'IF':([0,3,4,6,7,8,9,11,12,15,16,18,19,21,24,25,27,29,31,32,33,34,35,36,38,39,40,42,47,56,64,65,66,67,68,72,78,79,81,82,],[23,-28,-35,-43,-42,-44,-38,-37,-45,-46,-41,-39,-26,-5,-40,-36,23,-27,-20,-21,-13,-14,-6,-9,-12,-7,-8,-31,-25,-24,-10,-11,-19,-30,-23,-34,-29,-22,-33,-32,]),'OPUNA':([0,3,4,6,7,8,9,11,12,15,16,18,19,21,24,25,27,29,31,32,33,34,35,36,38,39,40,42,47,56,64,65,66,67,68,72,78,79,81,82,],[10,-28,-35,-43,-42,-44,-38,-37,-45,-46,-41,-39,-26,-5,-40,-36,10,-27,-20,-21,-13,-14,-6,-9,-12,-7,-8,-31,-25,-24,-10,-11,-19,-30,-23,-34,-29,-22,-33,-32,]),'PROC':([0,3,4,6,7,8,9,11,12,15,16,18,19,21,24,25,27,29,31,32,33,34,35,36,38,39,40,42,47,56,64,65,66,67,68,72,78,79,81,82,],[30,-28,-35,-43,-42,-44,-38,-37,-45,-46,-41,-39,-26,-5,-40,-36,30,-27,-20,-21,-13,-14,-6,-9,-12,-7,-8,-31,-25,-24,-10,-11,-19,-30,-23,-34,-29,-22,-33,-32,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -16,7 +16,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'imprime':([0,26,],[6,6,]),'condicionelse':([0,26,],[3,3,]),'procedimiento':([0,26,],[4,4,]),'opestring':([2,40,44,53,],[31,51,54,62,]),'comentario':([0,26,],[7,7,]),'preguntar':([0,26,],[8,8,]),'ciclowhile':([0,26,],[9,9,]),'condicion':([0,26,],[11,11,]),'fininstru':([0,26,],[12,12,]),'inicio':([0,26,],[13,46,]),'empty':([0,26,57,],[14,14,69,]),'return':([0,26,],[15,15,]),'operacion':([2,22,36,40,44,47,49,53,57,73,],[33,45,50,33,33,56,58,33,66,66,]),'parametro':([57,73,],[67,77,]),'inmediato':([2,22,36,40,44,47,49,53,57,73,],[37,37,37,37,37,37,37,37,37,37,]),'ciclofor':([0,26,],[17,17,]),'operacion1':([2,22,36,40,44,47,49,53,57,73,],[35,35,35,35,35,35,35,35,35,35,]),'opeunaria':([0,26,],[23,23,]),'asignacion':([0,26,],[24,24,]),'instruccion':([0,26,],[26,26,]),'condicionif':([0,26,],[28,28,]),'parametros':([57,],[68,]),'root':([0,],[25,]),}
+_lr_goto_items = {'imprime':([0,27,],[6,6,]),'condicionelse':([0,27,],[3,3,]),'procedimiento':([0,27,],[4,4,]),'opestring':([2,41,45,55,],[32,53,56,68,]),'comentario':([0,27,],[7,7,]),'preguntar':([0,27,],[8,8,]),'ciclowhile':([0,27,],[9,9,]),'condicion':([0,27,],[11,11,]),'fininstru':([0,27,],[12,12,]),'inicio':([0,27,],[13,48,]),'empty':([0,27,46,63,],[14,14,61,61,]),'llamado':([0,27,],[15,15,]),'return':([0,27,],[16,16,]),'operacion':([2,23,37,41,45,46,49,51,55,63,71,],[34,47,52,34,34,58,62,64,34,58,58,]),'parametro':([46,63,71,],[59,59,77,]),'inmediato':([2,23,37,41,45,46,49,51,55,63,71,],[38,38,38,38,38,38,38,38,38,38,38,]),'ciclofor':([0,27,],[18,18,]),'operacion1':([2,23,37,41,45,46,49,51,55,63,71,],[36,36,36,36,36,36,36,36,36,36,36,]),'opeunaria':([0,27,],[24,24,]),'asignacion':([0,27,],[25,25,]),'instruccion':([0,27,],[27,27,]),'condicionif':([0,27,],[29,29,]),'parametros':([46,63,],[60,74,]),'root':([0,],[26,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,48 +26,50 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> root","S'",1,None,None,None),
-  ('root -> inicio','root',1,'p_root','proyecto.py',146),
-  ('inicio -> instruccion inicio','inicio',2,'p_inicio','proyecto.py',154),
-  ('inicio -> empty','inicio',1,'p_inicio2','proyecto.py',158),
-  ('empty -> <empty>','empty',0,'p_empty','proyecto.py',163),
-  ('fininstru -> FIN','fininstru',1,'p_fin','proyecto.py',167),
-  ('inmediato -> NUM','inmediato',1,'p_inmediato','proyecto.py',177),
-  ('inmediato -> ID','inmediato',1,'p_inmediato','proyecto.py',178),
-  ('inmediato -> EXPBOOL','inmediato',1,'p_inmediato','proyecto.py',179),
-  ('operacion -> operacion1','operacion',1,'p_operacion','proyecto.py',184),
-  ('operacion1 -> operacion OPBIN operacion','operacion1',3,'p_operacion_normal_parentesis','proyecto.py',188),
-  ('operacion1 -> PARENA operacion PARENC','operacion1',3,'p_operacion_normal_parentesis','proyecto.py',189),
-  ('operacion1 -> inmediato','operacion1',1,'p_operacion_numero','proyecto.py',193),
-  ('opestring -> STRING','opestring',1,'p_opestring','proyecto.py',198),
-  ('opestring -> operacion','opestring',1,'p_opestring','proyecto.py',199),
-  ('parametro -> operacion COMA parametro','parametro',3,'p_parametro','proyecto.py',204),
-  ('parametro -> operacion','parametro',1,'p_parametro2','proyecto.py',208),
-  ('parametros -> parametro','parametros',1,'p_parametros','proyecto.py',213),
-  ('parametros -> empty','parametros',1,'p_parametros','proyecto.py',214),
-  ('imprime -> PRINT PARENA opestring PARENC','imprime',4,'p_imprime','proyecto.py',223),
-  ('comentario -> COMENT STRING','comentario',2,'p_comentario','proyecto.py',228),
-  ('return -> RETURN opestring','return',2,'p_return','proyecto.py',234),
-  ('procedimiento -> PROC ID PARENA parametros PARENC','procedimiento',5,'p_procedimiento','proyecto.py',239),
-  ('asignacion -> VAR ID ASIG opestring','asignacion',4,'p_asignacion','proyecto.py',246),
-  ('asignacion -> ID ASIG opestring','asignacion',3,'p_asignacion_sindeclaracion','proyecto.py',250),
-  ('condicionif -> IF operacion','condicionif',2,'p_condicionif','proyecto.py',255),
-  ('condicionelse -> ELSE','condicionelse',1,'p_condicionelse','proyecto.py',259),
-  ('condicion -> condicionif','condicion',1,'p_condicion','proyecto.py',266),
-  ('condicion -> condicionelse','condicion',1,'p_condicion','proyecto.py',267),
-  ('ciclowhile -> WHILE PARENA operacion PARENC ENTONCES','ciclowhile',5,'p_ciclowhile','proyecto.py',274),
-  ('ciclofor -> FOR ID IN ID','ciclofor',4,'p_ciclofor','proyecto.py',281),
-  ('opeunaria -> OPUNA ID','opeunaria',2,'p_operacionunaria','proyecto.py',288),
-  ('preguntar -> VAR ID ASIG ASK PARENA STRING PARENC','preguntar',7,'p_preguntar','proyecto.py',293),
-  ('preguntar -> ID ASIG ASK PARENA STRING PARENC','preguntar',6,'p_preguntar2','proyecto.py',297),
-  ('instruccion -> procedimiento','instruccion',1,'p_instruccion','proyecto.py',312),
-  ('instruccion -> asignacion','instruccion',1,'p_instruccion','proyecto.py',313),
-  ('instruccion -> condicion','instruccion',1,'p_instruccion','proyecto.py',314),
-  ('instruccion -> ciclowhile','instruccion',1,'p_instruccion','proyecto.py',315),
-  ('instruccion -> ciclofor','instruccion',1,'p_instruccion','proyecto.py',316),
-  ('instruccion -> opeunaria','instruccion',1,'p_instruccion','proyecto.py',317),
-  ('instruccion -> return','instruccion',1,'p_instruccion','proyecto.py',318),
-  ('instruccion -> comentario','instruccion',1,'p_instruccion','proyecto.py',319),
-  ('instruccion -> imprime','instruccion',1,'p_instruccion','proyecto.py',320),
-  ('instruccion -> preguntar','instruccion',1,'p_instruccion','proyecto.py',321),
-  ('instruccion -> fininstru','instruccion',1,'p_instruccion','proyecto.py',322),
+  ('root -> inicio','root',1,'p_root','proyecto.py',142),
+  ('inicio -> instruccion inicio','inicio',2,'p_inicio','proyecto.py',157),
+  ('inicio -> empty','inicio',1,'p_inicio2','proyecto.py',161),
+  ('empty -> <empty>','empty',0,'p_empty','proyecto.py',166),
+  ('fininstru -> FIN','fininstru',1,'p_fin','proyecto.py',170),
+  ('inmediato -> NUM','inmediato',1,'p_inmediato','proyecto.py',180),
+  ('inmediato -> ID','inmediato',1,'p_inmediato','proyecto.py',181),
+  ('inmediato -> EXPBOOL','inmediato',1,'p_inmediato','proyecto.py',182),
+  ('operacion -> operacion1','operacion',1,'p_operacion','proyecto.py',187),
+  ('operacion1 -> operacion OPBIN operacion','operacion1',3,'p_operacion_normal_parentesis','proyecto.py',191),
+  ('operacion1 -> PARENA operacion PARENC','operacion1',3,'p_operacion_normal_parentesis','proyecto.py',192),
+  ('operacion1 -> inmediato','operacion1',1,'p_operacion_numero','proyecto.py',196),
+  ('opestring -> STRING','opestring',1,'p_opestring','proyecto.py',201),
+  ('opestring -> operacion','opestring',1,'p_opestring','proyecto.py',202),
+  ('parametro -> operacion COMA parametro','parametro',3,'p_parametro','proyecto.py',207),
+  ('parametro -> operacion','parametro',1,'p_parametro2','proyecto.py',211),
+  ('parametros -> parametro','parametros',1,'p_parametros','proyecto.py',216),
+  ('parametros -> empty','parametros',1,'p_parametros','proyecto.py',217),
+  ('imprime -> PRINT PARENA opestring PARENC','imprime',4,'p_imprime','proyecto.py',226),
+  ('comentario -> COMENT STRING','comentario',2,'p_comentario','proyecto.py',231),
+  ('return -> RETURN opestring','return',2,'p_return','proyecto.py',237),
+  ('procedimiento -> PROC ID PARENA parametros PARENC','procedimiento',5,'p_procedimiento','proyecto.py',242),
+  ('asignacion -> VAR ID ASIG opestring','asignacion',4,'p_asignacion','proyecto.py',250),
+  ('asignacion -> ID ASIG opestring','asignacion',3,'p_asignacion_sindeclaracion','proyecto.py',254),
+  ('condicionif -> IF operacion','condicionif',2,'p_condicionif','proyecto.py',259),
+  ('condicionelse -> ELSE','condicionelse',1,'p_condicionelse','proyecto.py',263),
+  ('condicion -> condicionif','condicion',1,'p_condicion','proyecto.py',270),
+  ('condicion -> condicionelse','condicion',1,'p_condicion','proyecto.py',271),
+  ('ciclowhile -> WHILE PARENA operacion PARENC ENTONCES','ciclowhile',5,'p_ciclowhile','proyecto.py',278),
+  ('ciclofor -> FOR ID IN ID','ciclofor',4,'p_ciclofor','proyecto.py',285),
+  ('opeunaria -> OPUNA ID','opeunaria',2,'p_operacionunaria','proyecto.py',292),
+  ('preguntar -> VAR ID ASIG ASK PARENA STRING PARENC','preguntar',7,'p_preguntar','proyecto.py',297),
+  ('preguntar -> ID ASIG ASK PARENA STRING PARENC','preguntar',6,'p_preguntar2','proyecto.py',301),
+  ('llamado -> ID PARENA parametros PARENC','llamado',4,'p_llamado','proyecto.py',305),
+  ('instruccion -> procedimiento','instruccion',1,'p_instruccion','proyecto.py',319),
+  ('instruccion -> asignacion','instruccion',1,'p_instruccion','proyecto.py',320),
+  ('instruccion -> condicion','instruccion',1,'p_instruccion','proyecto.py',321),
+  ('instruccion -> ciclowhile','instruccion',1,'p_instruccion','proyecto.py',322),
+  ('instruccion -> ciclofor','instruccion',1,'p_instruccion','proyecto.py',323),
+  ('instruccion -> opeunaria','instruccion',1,'p_instruccion','proyecto.py',324),
+  ('instruccion -> return','instruccion',1,'p_instruccion','proyecto.py',325),
+  ('instruccion -> comentario','instruccion',1,'p_instruccion','proyecto.py',326),
+  ('instruccion -> imprime','instruccion',1,'p_instruccion','proyecto.py',327),
+  ('instruccion -> preguntar','instruccion',1,'p_instruccion','proyecto.py',328),
+  ('instruccion -> fininstru','instruccion',1,'p_instruccion','proyecto.py',329),
+  ('instruccion -> llamado','instruccion',1,'p_instruccion','proyecto.py',330),
 ]

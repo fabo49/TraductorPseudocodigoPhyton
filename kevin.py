@@ -8,9 +8,18 @@
 # Fecha de conversion: 07/08/15
 # ---------------------------------------------------------------------
 
+def sumador(a, b):
+	tmp1=a+1
+	tmp2=b+3
+	result=0
+	# 'Esa variable va a retornarse'
+	while(tmp1>=1):
+		if(b!=0):
+			result+=(tmp1+tmp2)-(a/b)
+		else:
+			print('El valor de b no es admitido ya que es un cero')			
+	print(result)
 def main():
-	x=32
-	# 'Prueba de comentario'
-	if(x==32):
-		print('Todo bien')
-	
+	num1 = input('Ingrese el primer numero ')
+	num2 = input('Ingrese el segundo numero ')
+	sumador(num1, num2)
